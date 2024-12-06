@@ -31,3 +31,4 @@ C:\Users\AD\source\repos\PlantManagement\obj\Debug\PlantManagement.exe
 C:\Users\AD\source\repos\PlantManagement\obj\Debug\PlantManagement.pdb
 C:\Users\AD\source\repos\PlantManagement\obj\Debug\Views\RegisterWindow.baml
 C:\Users\AD\source\repos\PlantManagement\obj\Debug\Views\RegisterWindow.g.cs
+C:\Users\AD\source\repos\PlantManagement\obj\Debug\PlantManagement_Content.g.cs

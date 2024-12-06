@@ -1,6 +1,5 @@
-﻿using PlantManagement.Controllers;
-using PlantManagement.Models;
-using System.Windows;
+﻿using System.Windows;
+using PlantManagement.Controllers;
 
 namespace PlantManagement.Views
 {
@@ -16,21 +15,25 @@ namespace PlantManagement.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var user = new User
-            {
-                Username = UsernameTextBox.Text,
-                Password = PasswordBox.Password
-            };
+            var username = UsernameTextBox.Text.Trim();
+            var password = PasswordBox.Password.Trim();
 
-            if (_controller.AuthenticateUser(user))
+            if (_controller.AuthenticateUser(username, password))
             {
                 MessageBox.Show("Đăng nhập thành công!");
-                this.Close();  // Đóng cửa sổ đăng nhập
+                DialogResult = true; // Đăng nhập thành công
+                Close();
             }
             else
             {
-                MessageBox.Show("Sai tên người dùng hoặc mật khẩu!");
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false; // Thoát mà không đăng nhập
+            Close();
         }
     }
 }

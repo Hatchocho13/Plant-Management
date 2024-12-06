@@ -55,10 +55,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include=".xaml.cs" />
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
+    <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Models\CoSoBuonBan.cs" />
+    <Compile Include="Models\CoSoSanXuat.cs" />
+    <Compile Include="Models\GiongCayTrong.cs" />
+    <Compile Include="Models\GiongCay_LuuHanh.cs" />
+    <Compile Include="Models\Huyen.cs" />
+    <Compile Include="Models\LoginHistory.cs" />
+    <Compile Include="Models\PhanBon.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SXTT.cs" />
+    <Compile Include="Models\ThuocBVTV.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
+    <Compile Include="Models\VuonCayDauDong.cs" />
+    <Compile Include="Models\Xa.cs" />
     <Compile Include="Views\ManagePlantsWindow.xaml.cs">
       <DependentUpon>ManagePlantsWindow.xaml</DependentUpon>
     </Compile>
@@ -98,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Plant.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -129,5 +142,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
