@@ -1,12 +1,7 @@
-﻿using System;
-
-namespace PlantManagement.Models
+﻿public class GiongCayTrong
 {
-    public class GiongCayTrong
-    {
-        public int ID { get; set; }
-        public string TenGiong { get; set; }
-        public string ThongTin { get; set; }
-        public bool CayDauDong { get; set; }
-    }
+    public int ID { get; set; } // Khóa chính
+    public string TenGiong { get; set; } // Tên giống cây trồng
+    public string ThongTin { get; set; } // Thông tin giống cây
+    public bool CayDauDong { get; set; } // Có phải cây đầu dòng không
 }

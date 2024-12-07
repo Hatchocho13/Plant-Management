@@ -1,11 +1,5 @@
-﻿using System;
-
-namespace PlantManagement.Models
+﻿public class Role
 {
-    public class Role
-    {
-        public int ID { get; set; }
-        public string RoleName { get; set; }
-    }
+    public int ID { get; set; } // Khóa chính
+    public string RoleName { get; set; } // Tên vai trò (Admin, User,...)
 }
-

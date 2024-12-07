@@ -1,117 +1,92 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using PlantManagement.Controllers;
 
 namespace PlantManagement.Views
 {
     public partial class RegisterWindow : Window
     {
+        private readonly RegisterController _registerController;
+
         public RegisterWindow()
         {
             InitializeComponent();
+            _registerController = new RegisterController();
         }
 
-        // Username TextBox GotFocus event
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // Ẩn placeholder khi người dùng click vào TextBox
-            if (sender == UsernameTextBox)
-                UsernamePlaceholder.Visibility = Visibility.Collapsed;
-
-            if (sender == FullNameTextBox)
-                FullNamePlaceholder.Visibility = Visibility.Collapsed;
-
-            if (sender == EmailTextBox)
-                EmailPlaceholder.Visibility = Visibility.Collapsed;
-        }
-
-        // Username TextBox LostFocus event
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // Hiện lại placeholder khi người dùng không nhập liệu
-            if (string.IsNullOrEmpty(UsernameTextBox.Text))
-            {
-                UsernamePlaceholder.Visibility = Visibility.Visible;
-            }
-
-            if (string.IsNullOrEmpty(FullNameTextBox.Text))
-            {
-                FullNamePlaceholder.Visibility = Visibility.Visible;
-            }
-
-            if (string.IsNullOrEmpty(EmailTextBox.Text))
-            {
-                EmailPlaceholder.Visibility = Visibility.Visible;
-            }
-        }
-
-        // PasswordBox GotFocus event
-        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // Ẩn placeholder khi người dùng click vào PasswordBox
-            PasswordPlaceholder.Visibility = Visibility.Collapsed;
-        }
-
-        // PasswordBox LostFocus event
-        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // Hiện lại placeholder khi người dùng không nhập liệu
-            if (string.IsNullOrEmpty(PasswordBox.Password))
-            {
-                PasswordPlaceholder.Visibility = Visibility.Visible;
-            }
-        }
-
-        // Confirm PasswordBox GotFocus event
-        private void ConfirmPasswordBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // Ẩn placeholder khi người dùng click vào ConfirmPasswordBox
-            ConfirmPasswordPlaceholder.Visibility = Visibility.Collapsed;
-        }
-
-        // Confirm PasswordBox LostFocus event
-        private void ConfirmPasswordBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // Hiện lại placeholder khi người dùng không nhập liệu
-            if (string.IsNullOrEmpty(ConfirmPasswordBox.Password))
-            {
-                ConfirmPasswordPlaceholder.Visibility = Visibility.Visible;
-            }
-        }
-
-        // Register Button Click event
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            string username = UsernameTextBox.Text;
-            string fullName = FullNameTextBox.Text;
-            string email = EmailTextBox.Text;
-            string password = PasswordBox.Password;
-            string confirmPassword = ConfirmPasswordBox.Password;
-
-            // Kiểm tra tính hợp lệ của các trường
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+            try
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
-                return;
-            }
+                // Lấy dữ liệu từ giao diện
+                string username = UsernameTextBox.Text.Trim();
+                string fullName = FullNameTextBox.Text.Trim();
+                string email = EmailTextBox.Text.Trim();
+                string password = PasswordBox.Password;
+                string confirmPassword = ConfirmPasswordBox.Password;
 
-            // Kiểm tra định dạng email
-            if (!IsValidEmail(email))
+                // Kiểm tra tính hợp lệ
+                string validationMessage = ValidateInputs(username, fullName, email, password, confirmPassword);
+                if (!string.IsNullOrEmpty(validationMessage))
+                {
+                    MessageBox.Show(validationMessage, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Gọi phương thức Register trong RegisterController
+                bool success = _registerController.Register(username, fullName, email, password);
+
+                if (success)
+                {
+                    MessageBox.Show("Đăng ký thành công! Vui lòng đăng nhập lại.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Đóng cửa sổ đăng ký và chuyển về cửa sổ đăng nhập
+                    this.DialogResult = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Đăng ký thất bại! Tên đăng nhập đã tồn tại.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Email không hợp lệ.");
-                return;
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            // Kiểm tra mật khẩu và xác nhận mật khẩu có khớp không
-            if (password != confirmPassword)
-            {
-                MessageBox.Show("Mật khẩu và xác nhận mật khẩu không khớp.");
-                return;
-            }
-
-            // Đăng ký thành công
-            MessageBox.Show("Đăng ký thành công!");
         }
 
-        // Kiểm tra định dạng email hợp lệ
+        /// <summary>
+        /// Kiểm tra tính hợp lệ của thông tin đầu vào.
+        /// </summary>
+        private string ValidateInputs(string username, string fullName, string email, string password, string confirmPassword)
+        {
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(fullName) ||
+                string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+            {
+                return "Vui lòng điền đầy đủ thông tin.";
+            }
+
+            if (!IsValidEmail(email))
+            {
+                return "Email không hợp lệ.";
+            }
+
+            if (password != confirmPassword)
+            {
+                return "Mật khẩu và xác nhận mật khẩu không khớp.";
+            }
+
+            if (password.Length < 6) // Ví dụ: yêu cầu mật khẩu tối thiểu 6 ký tự
+            {
+                return "Mật khẩu phải có ít nhất 6 ký tự.";
+            }
+
+            return null; // Không có lỗi
+        }
+
+        /// <summary>
+        /// Kiểm tra định dạng email hợp lệ.
+        /// </summary>
         private bool IsValidEmail(string email)
         {
             try

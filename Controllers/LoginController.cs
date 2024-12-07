@@ -14,10 +14,10 @@ namespace PlantManagement.Controllers
             _dbHelper = new DatabaseHelper();
         }
 
-        public bool AuthenticateUser(string username, string password)
+        public User AuthenticateUser(string username, string password)
         {
             const string query = @"
-                SELECT PasswordHash, IsActive 
+                SELECT ID, UserName, FullName, [Password], Email, IsActive, CreatedAt, ID_Group
                 FROM [User] 
                 WHERE UserName = @UserName";
 
@@ -31,13 +31,28 @@ namespace PlantManagement.Controllers
             if (dataTable.Rows.Count > 0)
             {
                 var row = dataTable.Rows[0];
-                var passwordHash = row["PasswordHash"].ToString();
-                var isActive = Convert.ToBoolean(row["IsActive"]);
 
-                return isActive && password == passwordHash;
+                // Tạo đối tượng User từ dữ liệu trong bảng
+                var user = new User
+                {
+                    ID = Convert.ToInt32(row["ID"]),
+                    UserName = row["UserName"].ToString(),
+                    FullName = row["FullName"].ToString(),
+                    Password = row["Password"].ToString(),
+                    Email = row["Email"].ToString(),
+                    IsActive = Convert.ToBoolean(row["IsActive"]),
+                    CreatedAt = Convert.ToDateTime(row["CreatedAt"]),
+                    ID_Group = Convert.ToInt32(row["ID_Group"])
+                };
+
+                // So sánh mật khẩu (không mã hóa)
+                if (user.IsActive && password == user.Password)
+                {
+                    return user; // Trả về đối tượng User nếu đăng nhập thành công
+                }
             }
 
-            return false;
+            return null; // Trả về null nếu không tìm thấy người dùng hoặc mật khẩu sai
         }
     }
 }

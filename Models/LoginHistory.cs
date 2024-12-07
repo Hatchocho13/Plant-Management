@@ -1,12 +1,9 @@
 ﻿using System;
 
-namespace PlantManagement.Models
+public class LoginHistory
 {
-    public class LoginHistory
-    {
-        public int ID { get; set; }
-        public int UserID { get; set; }
-        public DateTime LoginTime { get; set; }
-        public string IPAddress { get; set; }
-    }
+    public int ID { get; set; } // Khóa chính
+    public int UserID { get; set; } // ID người dùng
+    public DateTime LoginTime { get; set; } // Thời gian đăng nhập
+    public string IPAddress { get; set; } // Địa chỉ IP
 }

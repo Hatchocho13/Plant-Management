@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\AD\source\repos\PlantManagement\App.xaml
-4731552260
+12-947711305
 1-600760770
-29900527844
-13-1310406943
-Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\ManagePlantsWindow.xaml;Views\RegisterWindow.xaml;
+38-360387894
+151937372271
+Views\BaoCaoView.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\QuanLyDanhMucView.xaml;Views\QuanLyGiongCayTrongView.xaml;Views\QuanLyLichSuView.xaml;Views\QuanLyNguoiDungView.xaml;Views\QuanLyPhanBonView.xaml;Views\QuanLySanXuatTrongTrotView.xaml;Views\QuanLyThongTinTaiKhoanView.xaml;Views\QuanLyThuocBaoVeView.xaml;Views\RegisterWindow.xaml;
 
 False
 
