@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PlantManagement.Views
 {
     /// <summary>
-    /// Interaction logic for QuanLyNguoiDungView.xaml
+    /// Interaction logic for QuanLyNguoiDunngView.xaml
     /// </summary>
-    public partial class QuanLyNguoiDungView : UserControl
+    public partial class QuanLyNguoiDunngView : UserControl
     {
-        public QuanLyNguoiDungView()
+        public QuanLyNguoiDunngView()
         {
             InitializeComponent();
         }

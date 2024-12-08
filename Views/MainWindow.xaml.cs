@@ -7,15 +7,13 @@ namespace PlantManagement.Views
     public partial class MainWindow : Window
     {
         private readonly MainController _controller;
-
-        // Cờ để theo dõi trạng thái của các bảng tính năng
-        private bool _isSystemButtonsVisible = false;
-        private bool _isDatabaseButtonsVisible = false;
+        private bool _isAdmin;  // Khai báo biến _isAdmin
 
         public MainWindow()
         {
             InitializeComponent();
             _controller = new MainController();
+            _isAdmin = false;  // Mặc định là không phải admin
         }
 
         // Khi nhấn vào nút Đăng Nhập
@@ -24,7 +22,7 @@ namespace PlantManagement.Views
             var loginWindow = new LoginWindow();
             if (loginWindow.ShowDialog() == true)
             {
-                LoadFeatureSelectionUI();
+                LoadMainUI();
             }
             else
             {
@@ -39,30 +37,28 @@ namespace PlantManagement.Views
             registerWindow.ShowDialog();
         }
 
-        private void LoadFeatureSelectionUI()
+        // Tải giao diện sau khi đăng nhập thành công
+        private void LoadMainUI()
         {
-            InitialPanel.Visibility = Visibility.Collapsed;
-            MainPanel.Visibility = Visibility.Visible;
+            InitialPanel.Visibility = Visibility.Collapsed;  // Ẩn giao diện đăng nhập
+            MainPanel.Visibility = Visibility.Visible;  // Hiển thị các tính năng chính
         }
 
         // Khi người dùng chọn tính năng "Quản trị hệ thống"
         private void ManageSystemButton_Click(object sender, RoutedEventArgs e)
         {
-            _isSystemButtonsVisible = !_isSystemButtonsVisible; // Chuyển trạng thái
-            SystemButtons.Visibility = _isSystemButtonsVisible ? Visibility.Visible : Visibility.Collapsed;
+            ToggleVisibility(SystemButtons);
         }
 
         // Khi người dùng chọn tính năng "Quản lý CSDL trồng trọt"
         private void ManageDatabaseButton_Click(object sender, RoutedEventArgs e)
         {
-            _isDatabaseButtonsVisible = !_isDatabaseButtonsVisible; // Chuyển trạng thái
-            DatabaseButtons.Visibility = _isDatabaseButtonsVisible ? Visibility.Visible : Visibility.Collapsed;
+            ToggleVisibility(DatabaseButtons);
         }
-
         // Khi người dùng chọn "Quản lý người dùng"
         private void ManageUserButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowContent(new QuanLyNguoiDungView());
+            //ShowContent(new QuanLyNguoiDungView());
         }
 
         // Khi người dùng chọn "Quản lý danh mục"
@@ -83,17 +79,10 @@ namespace PlantManagement.Views
             ShowContent(new BaoCaoView());
         }
 
-        // Khi người dùng chọn "Quản lý thông tin tài khoản"
-        private void ManageAccountInfoButton_Click(object sender, RoutedEventArgs e)
+        // Hàm toggle để ẩn/hiện các bảng tính năng
+        private void ToggleVisibility(UIElement element)
         {
-            ShowContent(new QuanLyThongTinTaiKhoanView());
-        }
-
-        // Khi người dùng chọn tính năng "Quản lý CSDL"
-        private void ManageDatabaseFeaturesButton_Click(object sender, RoutedEventArgs e)
-        {
-            _isDatabaseButtonsVisible = !_isDatabaseButtonsVisible; // Chuyển trạng thái
-            DatabaseButtons.Visibility = _isDatabaseButtonsVisible ? Visibility.Visible : Visibility.Collapsed;
+            element.Visibility = element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         }
 
         // Hàm chung để hiển thị nội dung cho các mục Quản lý CSDL
@@ -135,7 +124,6 @@ namespace PlantManagement.Views
         // Khi người dùng nhấn nút "Quay lại"
         private void BackToFeatureSelection_Click(object sender, RoutedEventArgs e)
         {
-            // Quay lại màn hình chọn tính năng ban đầu
             SystemButtons.Visibility = Visibility.Collapsed;
             DatabaseButtons.Visibility = Visibility.Collapsed;
             MainPanel.Visibility = Visibility.Visible;
@@ -150,6 +138,13 @@ namespace PlantManagement.Views
             MainPanel.Visibility = Visibility.Collapsed;
             MainContent.Visibility = Visibility.Collapsed;
             InitialPanel.Visibility = Visibility.Visible;
+        }
+
+        // Khi người dùng chọn "Quản lý thông tin người dùng"
+        private void ManageUserInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Truyền _isAdmin vào QuanLyThongTinTaiKhoanView
+            ShowContent(new QuanLyThongTinTaiKhoanView(_isAdmin));
         }
     }
 }

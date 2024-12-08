@@ -58,13 +58,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\QuanLyThongTinTaiKhoanController.cs" />
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
     <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Models\AuthController.cs" />
     <Compile Include="Models\Cap.cs" />
     <Compile Include="Models\CoSoBuonBan.cs" />
     <Compile Include="Models\CoSoSanXuat.cs" />
+    <Compile Include="Models\Database.cs" />
     <Compile Include="Models\DonViHanhChinh.cs" />
     <Compile Include="Models\GiongCayTrong.cs" />
     <Compile Include="Models\GiongCay_LuuHanh.cs" />
@@ -82,6 +85,9 @@
     <Compile Include="Views\BaoCaoView.xaml.cs">
       <DependentUpon>BaoCaoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuanLyDanhMucView.xaml.cs">
       <DependentUpon>QuanLyDanhMucView.xaml</DependentUpon>
     </Compile>
@@ -91,8 +97,8 @@
     <Compile Include="Views\QuanLyLichSuView.xaml.cs">
       <DependentUpon>QuanLyLichSuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QuanLyNguoiDungView.xaml.cs">
-      <DependentUpon>QuanLyNguoiDungView.xaml</DependentUpon>
+    <Compile Include="Views\QuanLyNguoiDunngView.xaml.cs">
+      <DependentUpon>QuanLyNguoiDunngView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuanLyPhanBonView.xaml.cs">
       <DependentUpon>QuanLyPhanBonView.xaml</DependentUpon>
@@ -110,6 +116,10 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\BaoCaoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QuanLyNguoiDungView.xaml">
+    <Page Include="Views\QuanLyNguoiDunngView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
