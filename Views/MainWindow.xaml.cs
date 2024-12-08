@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using PlantManagement.Controllers;
-using PlantManagement.Views;  // Thêm namespace để sử dụng các UserControl
+using PlantManagement.Views;
 
 namespace PlantManagement.Views
 {
@@ -8,19 +8,22 @@ namespace PlantManagement.Views
     {
         private readonly MainController _controller;
 
+        // Cờ để theo dõi trạng thái của các bảng tính năng
+        private bool _isSystemButtonsVisible = false;
+        private bool _isDatabaseButtonsVisible = false;
+
         public MainWindow()
         {
             InitializeComponent();
             _controller = new MainController();
         }
 
+        // Khi nhấn vào nút Đăng Nhập
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Mở cửa sổ đăng nhập và kiểm tra kết quả đăng nhập
             var loginWindow = new LoginWindow();
-            if (loginWindow.ShowDialog() == true)  // Nếu đăng nhập thành công (DialogResult = true)
+            if (loginWindow.ShowDialog() == true)
             {
-                // Cập nhật giao diện MainWindow để hiển thị tính năng
                 LoadFeatureSelectionUI();
             }
             else
@@ -29,111 +32,124 @@ namespace PlantManagement.Views
             }
         }
 
+        // Khi nhấn vào nút Đăng Ký
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            // Mở cửa sổ đăng ký
             var registerWindow = new RegisterWindow();
-            registerWindow.ShowDialog(); // Đăng ký sau khi nhấn nút "Đăng Ký"
+            registerWindow.ShowDialog();
         }
 
         private void LoadFeatureSelectionUI()
         {
-            // Ẩn các nút đăng nhập và đăng ký
             InitialPanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị bảng chọn tính năng
-            FeaturePanel.Visibility = Visibility.Visible;
+            MainPanel.Visibility = Visibility.Visible;
         }
 
         // Khi người dùng chọn tính năng "Quản trị hệ thống"
         private void ManageSystemButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn bảng tính năng
-            FeaturePanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị các mục của tính năng quản trị hệ thống
-            SystemManagementPanel.Visibility = Visibility.Visible;
+            _isSystemButtonsVisible = !_isSystemButtonsVisible; // Chuyển trạng thái
+            SystemButtons.Visibility = _isSystemButtonsVisible ? Visibility.Visible : Visibility.Collapsed;
         }
 
         // Khi người dùng chọn tính năng "Quản lý CSDL trồng trọt"
         private void ManageDatabaseButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn bảng tính năng
-            FeaturePanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị các mục của tính năng quản lý CSDL trồng trọt
-            DatabaseManagementPanel.Visibility = Visibility.Visible;
+            _isDatabaseButtonsVisible = !_isDatabaseButtonsVisible; // Chuyển trạng thái
+            DatabaseButtons.Visibility = _isDatabaseButtonsVisible ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        // Khi người dùng chọn "Quản lý người dùng" từ menu quản trị hệ thống
+        // Khi người dùng chọn "Quản lý người dùng"
         private void ManageUserButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn các bảng tính năng khác
-            SystemManagementPanel.Visibility = Visibility.Collapsed;
-            DatabaseManagementPanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị UserControl quản lý người dùng
-            QuanLyNguoiDungView manageUserView = new QuanLyNguoiDungView();
-            MainContent.Content = manageUserView;
-            MainContent.Visibility = Visibility.Visible;
+            ShowContent(new QuanLyNguoiDungView());
         }
 
-        // Các sự kiện cho các tính năng khác
+        // Khi người dùng chọn "Quản lý danh mục"
         private void ManageCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn các bảng tính năng khác
-            SystemManagementPanel.Visibility = Visibility.Collapsed;
-            DatabaseManagementPanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị UserControl quản lý danh mục
-            QuanLyDanhMucView manageCategoryView = new QuanLyDanhMucView();
-            MainContent.Content = manageCategoryView;
-            MainContent.Visibility = Visibility.Visible;
+            ShowContent(new QuanLyDanhMucView());
         }
 
+        // Khi người dùng chọn "Quản lý lịch sử"
         private void ManageHistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn các bảng tính năng khác
-            SystemManagementPanel.Visibility = Visibility.Collapsed;
-            DatabaseManagementPanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị UserControl quản lý lịch sử
-            QuanLyLichSuView manageHistoryView = new QuanLyLichSuView();
-            MainContent.Content = manageHistoryView;
-            MainContent.Visibility = Visibility.Visible;
+            ShowContent(new QuanLyLichSuView());
         }
 
+        // Khi người dùng chọn "Báo cáo"
         private void ReportButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn các bảng tính năng khác
-            SystemManagementPanel.Visibility = Visibility.Collapsed;
-            DatabaseManagementPanel.Visibility = Visibility.Collapsed;
-
-            // Hiển thị UserControl báo cáo
-            BaoCaoView reportView = new BaoCaoView();
-            MainContent.Content = reportView;
-            MainContent.Visibility = Visibility.Visible;
+            ShowContent(new BaoCaoView());
         }
 
+        // Khi người dùng chọn "Quản lý thông tin tài khoản"
         private void ManageAccountInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn các bảng tính năng khác
-            SystemManagementPanel.Visibility = Visibility.Collapsed;
-            DatabaseManagementPanel.Visibility = Visibility.Collapsed;
+            ShowContent(new QuanLyThongTinTaiKhoanView());
+        }
 
-            // Hiển thị UserControl quản lý thông tin tài khoản
-            QuanLyThongTinTaiKhoanView manageAccountInfoView = new QuanLyThongTinTaiKhoanView();
-            MainContent.Content = manageAccountInfoView;
+        // Khi người dùng chọn tính năng "Quản lý CSDL"
+        private void ManageDatabaseFeaturesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _isDatabaseButtonsVisible = !_isDatabaseButtonsVisible; // Chuyển trạng thái
+            DatabaseButtons.Visibility = _isDatabaseButtonsVisible ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        // Hàm chung để hiển thị nội dung cho các mục Quản lý CSDL
+        private void ShowContent(UIElement view)
+        {
+            // Ẩn các mục đang hiển thị
+            SystemButtons.Visibility = Visibility.Collapsed;
+            DatabaseButtons.Visibility = Visibility.Collapsed;
             MainContent.Visibility = Visibility.Visible;
+
+            // Hiển thị nội dung trang mới
+            MainContent.Content = view;
+        }
+
+        // Khi người dùng chọn "Quản lý giống cây trồng"
+        private void ManagePlantVarietyButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(new QuanLyGiongCayTrongView());
+        }
+
+        // Khi người dùng chọn "Quản lý thuốc bảo vệ thực vật"
+        private void ManagePesticidesButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(new QuanLyThuocBaoVeView());
+        }
+
+        // Khi người dùng chọn "Quản lý phân bón"
+        private void ManageFertilizersButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(new QuanLyPhanBonView());
+        }
+
+        // Khi người dùng chọn "Quản lý sản xuất trồng trọt"
+        private void ManageProductionButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(new QuanLySanXuatTrongTrotView());
         }
 
         // Khi người dùng nhấn nút "Quay lại"
         private void BackToFeatureSelection_Click(object sender, RoutedEventArgs e)
         {
-            // Ẩn các bảng tính năng quản lý và quay lại bảng chọn tính năng
-            SystemManagementPanel.Visibility = Visibility.Collapsed;
-            DatabaseManagementPanel.Visibility = Visibility.Collapsed;
-            FeaturePanel.Visibility = Visibility.Visible;
+            // Quay lại màn hình chọn tính năng ban đầu
+            SystemButtons.Visibility = Visibility.Collapsed;
+            DatabaseButtons.Visibility = Visibility.Collapsed;
+            MainPanel.Visibility = Visibility.Visible;
+            MainContent.Visibility = Visibility.Collapsed;
+        }
+
+        // Khi nhấn vào nút Đăng Xuất
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Đăng xuất thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            MainPanel.Visibility = Visibility.Collapsed;
+            MainContent.Visibility = Visibility.Collapsed;
+            InitialPanel.Visibility = Visibility.Visible;
         }
     }
 }
