@@ -60,7 +60,6 @@ C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyGiongC
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyLichSuView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyPhanBonView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLySanXuatTrongTrotView.baml
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThuocBaoVeView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\RegisterWindow.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\BaoCaoView.g.cs
@@ -71,7 +70,6 @@ C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyGiongC
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyLichSuView.g.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyPhanBonView.g.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLySanXuatTrongTrotView.g.cs
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.g.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThuocBaoVeView.g.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\RegisterWindow.g.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\App.g.cs
@@ -86,5 +84,6 @@ C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.pd
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement_MarkupCompile.lref
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyNguoiDunngView.g.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyNguoiDunngView.baml
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\ChangePasswordWindow.baml
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\ChangePasswordWindow.g.cs
+C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\App.baml
+C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.baml
+C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.g.cs

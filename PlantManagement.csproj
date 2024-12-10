@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\QuanLyThongTinTaiKhoanController.cs" />
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
@@ -84,9 +83,6 @@
     <Compile Include="Models\VuonCayDauDong.cs" />
     <Compile Include="Views\BaoCaoView.xaml.cs">
       <DependentUpon>BaoCaoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ChangePasswordWindow.xaml.cs">
-      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuanLyDanhMucView.xaml.cs">
       <DependentUpon>QuanLyDanhMucView.xaml</DependentUpon>
@@ -116,10 +112,6 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\BaoCaoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +203,8 @@
     <Content Include=".gitignore">
       <Generator>MSBuild:Compile</Generator>
     </Content>
+    <Resource Include="Images\realmadrid.png" />
+    <Resource Include="Images\cropped-logo-vingarden.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

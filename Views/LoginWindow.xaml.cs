@@ -76,12 +76,18 @@ namespace PlantManagement.Views
             if (!string.IsNullOrEmpty(password))
             {
                 MessageBox.Show($"Mật khẩu của bạn là: {password}", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                BackToLoginButton_Click(sender, e);  // Quay lại màn hình đăng nhập
+
+                // Đóng cửa sổ hiện tại và mở trang chính
+                this.Close(); // Đóng cửa sổ Quên mật khẩu
+
+                MainWindow mainLogin = new MainWindow(); // Khởi tạo trang chính
+                mainLogin.Show();
             }
             else
             {
                 MessageBox.Show("Tài khoản hoặc email không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }
