@@ -7,13 +7,14 @@ namespace PlantManagement.Views
     public partial class MainWindow : Window
     {
         private readonly MainController _controller;
-        private bool _isAdmin;  // Biến _isAdmin sẽ xác định nếu người dùng là Admin
+        private bool _isAdmin; // Biến _isAdmin xác định nếu người dùng là Admin
+        private bool _isAccountPageVisible = false;
 
         public MainWindow()
         {
             InitializeComponent();
             _controller = new MainController();
-            _isAdmin = false;  // Mặc định là không phải admin
+            _isAdmin = false; // Mặc định là không phải admin
         }
 
         // Khi nhấn vào nút Đăng Nhập
@@ -25,7 +26,7 @@ namespace PlantManagement.Views
                 // Giả sử nếu người dùng đăng nhập thành công và là Admin
                 _isAdmin = true;
                 LoadMainUI();
-                UpdateUserName("Admin");  // Tên người dùng có thể thay đổi sau khi xác thực đăng nhập
+                UpdateUserName("Admin"); // Tên người dùng có thể thay đổi sau khi xác thực đăng nhập
             }
             else
             {
@@ -57,11 +58,19 @@ namespace PlantManagement.Views
         // Khi nhấn vào nút "My Account"
         private void MyAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            // Tạo một instance của QuanLyThongTinTaiKhoanView (UserControl)
-            var userAccountView = new QuanLyThongTinTaiKhoanView();
-
-            // Đặt QuanLyThongTinTaiKhoanView vào ContentControl
-            //QuanLyThongTinTaiKhoanViewControl.Content = userAccountView;
+            if (_isAccountPageVisible)
+            {
+                // Nếu trang "My Account" đang hiển thị, ẩn trang và quay lại giao diện chính
+                MainContent.Content = null; // Xóa nội dung trang hiện tại
+                _isAccountPageVisible = false; // Đánh dấu là trang không còn hiển thị
+            }
+            else
+            {
+                // Nếu trang "My Account" chưa hiển thị, hiển thị trang
+                QuanLyThongTinTaiKhoanView accountView = new QuanLyThongTinTaiKhoanView();
+                MainContent.Content = accountView; // Thêm UserControl vào ContentControl
+                _isAccountPageVisible = true; // Đánh dấu trang "My Account" đang hiển thị
+            }
         }
 
         // Các sự kiện khi nhấn vào các nút tính năng

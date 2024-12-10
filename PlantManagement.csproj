@@ -61,7 +61,7 @@
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
-    <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Images\Helpers\DatabaseHelper.cs" />
     <Compile Include="Models\AuthController.cs" />
     <Compile Include="Models\Cap.cs" />
     <Compile Include="Models\CoSoBuonBan.cs" />
