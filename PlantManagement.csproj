@@ -93,8 +93,8 @@
     <Compile Include="Views\QuanLyLichSuView.xaml.cs">
       <DependentUpon>QuanLyLichSuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QuanLyNguoiDunngView.xaml.cs">
-      <DependentUpon>QuanLyNguoiDunngView.xaml</DependentUpon>
+    <Compile Include="Views\QuanLyNguoiDungView.xaml.cs">
+      <DependentUpon>QuanLyNguoiDungView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuanLyPhanBonView.xaml.cs">
       <DependentUpon>QuanLyPhanBonView.xaml</DependentUpon>
@@ -148,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QuanLyNguoiDunngView.xaml">
+    <Page Include="Views\QuanLyNguoiDungView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

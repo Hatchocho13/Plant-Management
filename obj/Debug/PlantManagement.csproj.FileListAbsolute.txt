@@ -82,8 +82,8 @@ C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.exe
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.pdb
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement_MarkupCompile.lref
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyNguoiDunngView.g.cs
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyNguoiDunngView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\App.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.g.cs
+C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyNguoiDungView.baml
+C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyNguoiDungView.g.cs

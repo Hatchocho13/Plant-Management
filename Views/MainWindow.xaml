@@ -5,13 +5,13 @@
 
     <Grid>
         <!-- Giao diện đăng nhập ban đầu -->
-        <StackPanel x:Name="InitialPanel" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible">
+        <StackPanel x:Name="InitialPanel" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden">
             <Button x:Name="LoginButton" Content="Đăng Nhập" Width="250" Height="50" Click="LoginButton_Click" Margin="0,15" Background="#4CAF50" Foreground="White" FontWeight="Bold" BorderBrush="#388E3C" BorderThickness="2" Cursor="Hand"/>
             <Button x:Name="RegisterButton" Content="Đăng Ký" Width="250" Height="50" Click="RegisterButton_Click" Margin="0,15" Background="#2196F3" Foreground="White" FontWeight="Bold" BorderBrush="#1976D2" BorderThickness="2" Cursor="Hand"/>
         </StackPanel>
 
         <!-- Giao diện sau khi đăng nhập -->
-        <Grid x:Name="MainPanel" Visibility="Collapsed" Background="#E8F5E9" Margin="20">
+        <Grid x:Name="MainPanel" Visibility="Visible" Background="#E8F5E9" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

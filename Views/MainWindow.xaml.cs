@@ -76,7 +76,19 @@ namespace PlantManagement.Views
         // Các sự kiện khi nhấn vào các nút tính năng
         private void ManageUserButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện quản lý người dùng.");
+            if (_isAccountPageVisible)
+            {
+                // Nếu trang "My Account" đang hiển thị, ẩn trang và quay lại giao diện chính
+                MainContent.Content = null; // Xóa nội dung trang hiện tại
+                _isAccountPageVisible = false; // Đánh dấu là trang không còn hiển thị
+            }
+            else
+            {
+                // Nếu trang "My Account" chưa hiển thị, hiển thị trang
+                QuanLyNguoiDungView accountView = new QuanLyNguoiDungView();
+                MainContent.Content = accountView; // Thêm UserControl vào ContentControl
+                _isAccountPageVisible = true; // Đánh dấu trang "My Account" đang hiển thị
+            }
         }
 
         private void ManageAdministrativeUnitButton_Click(object sender, RoutedEventArgs e)
