@@ -81,7 +81,6 @@ C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.cs
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.csproj.CoreCompileInputs.cache
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.exe
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement.pdb
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\PlantManagement_MarkupCompile.lref
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\App.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.baml
 C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Debug\Views\QuanLyThongTinTaiKhoanView.g.cs
