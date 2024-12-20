@@ -6,12 +6,15 @@ namespace PlantManagement.Views
     public partial class LoginWindow : Window
     {
         private readonly LoginController _loginController;
+        private User _currentUser;
 
         public LoginWindow()
         {
             InitializeComponent();
             _loginController = new LoginController();  // Khởi tạo đối tượng LoginController
         }
+
+        public User GetCurrentUser() => _currentUser;
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -20,19 +23,26 @@ namespace PlantManagement.Views
             string password = PasswordBox.Password;
 
             // Gọi phương thức AuthenticateUser để kiểm tra thông tin đăng nhập
-            User user = _loginController.AuthenticateUser(username, password);
+            _currentUser = _loginController.AuthenticateUser(username, password);
 
-            if (user != null)
+            if (_currentUser != null)
             {
-                MessageBox.Show($"Đăng nhập thành công! Chào mừng {user.FullName}.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                // Lưu lịch sử đăng nhập thành công
+                _loginController.SaveLoginHistory(_currentUser.ID, true);
+
+                // Hiển thị thông báo đăng nhập thành công
+                MessageBox.Show($"Đăng nhập thành công! Chào mừng {_currentUser.FullName}.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 DialogResult = true;
-                this.Close();  // Đóng cửa sổ đăng nhập
+                this.Close(); // Đóng cửa sổ đăng nhập
             }
             else
             {
+                // Hiển thị thông báo lỗi đăng nhập
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -88,6 +98,5 @@ namespace PlantManagement.Views
                 MessageBox.Show("Tài khoản hoặc email không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
     }
 }

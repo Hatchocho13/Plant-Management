@@ -1,28 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using PlantManagement.Models;
+using PlantManagement.Controllers;
 
 namespace PlantManagement.Views
 {
-    /// <summary>
-    /// Interaction logic for QuanLyThongTinTaiKhoanView.xaml
-    /// </summary>
     public partial class QuanLyThongTinTaiKhoanView : UserControl
     {
-        public QuanLyThongTinTaiKhoanView()
+        private User _currentUser;
+        private ResetPasswordController _resetPasswordController;
+
+        public QuanLyThongTinTaiKhoanView(User user)
         {
             InitializeComponent();
+            _currentUser = user;
+            _resetPasswordController = new ResetPasswordController();
+            DisplayUserInfo(user);
+        }
+
+        private void DisplayUserInfo(User user)
+        {
+            FullNameTextBlock.Text = user.FullName;
+            UserNameTextBlock.Text = user.UserName;
+            EmailTextBlock.Text = user.Email;
+            CreatedAtTextBlock.Text = user.CreatedAt.ToString("dd/MM/yyyy");
+        }
+
+        private void ForgotPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ẩn phần thông tin tài khoản và nút đổi mật khẩu
+            AccountInfoPanel.Visibility = Visibility.Collapsed;
+            ForgotPasswordButton.Visibility = Visibility.Collapsed; // Ẩn nút "Đổi mật khẩu"
+
+            // Hiển thị ResetPasswordView
+            ResetPasswordView resetPasswordView = new ResetPasswordView(_currentUser);
+            ResetPasswordContent.Content = resetPasswordView;  // Chuyển ResetPasswordView vào ContentControl
+            ResetPasswordContent.Visibility = Visibility.Visible; // Hiển thị ResetPasswordView
         }
     }
 }

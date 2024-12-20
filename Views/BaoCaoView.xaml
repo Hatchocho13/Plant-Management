@@ -1,9 +1,19 @@
 ﻿<UserControl x:Class="PlantManagement.Views.BaoCaoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Width="800" Height="450">
+             Height="600" Width="1168" Background="LightYellow">
     <Grid>
-        <TextBlock Text="Báo cáo" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20"/>
-        
+        <!-- Nút điều hướng -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,10,10,5">
+            <Button Content="Người Dùng" Background="LightGreen" Click="NguoiDung_Click" Width="100" Height="25" Margin="5"/>
+            <Button Content="Lịch Sử Truy Cập" Background="LightGreen" Click="LichSuTruyCap_Click" Width="120" Height="25" Margin="5"/>
+            <Button Content="Lịch Sử Tác Động" Background="LightGreen" Click="LichSuTacDong_Click" Width="120" Height="25" Margin="5"/>
+            <Button Content="Tổng Hợp" Background="LightGreen" Click="TongHop_Click" Width="100" Height="25" Margin="5"/>
+        </StackPanel>
+
+        <!-- DataGrid để hiển thị danh sách người dùng -->
+        <DataGrid Name="UserDataGrid" AutoGenerateColumns="True" Width="1145" Height="515" Margin="0,0,0,-25"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  CanUserReorderColumns="False" CanUserResizeColumns="True"  IsReadOnly="True" CanUserSortColumns="False"/>
     </Grid>
 </UserControl>

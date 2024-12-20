@@ -1,28 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using PlantManagement.Controllers;
+using PlantManagement.Models;
 
 namespace PlantManagement.Views
 {
-    /// <summary>
-    /// Interaction logic for BaoCaoView.xaml
-    /// </summary>
     public partial class BaoCaoView : UserControl
     {
+        private BaoCaoController _baoCaoController;
+
         public BaoCaoView()
         {
             InitializeComponent();
+            _baoCaoController = new BaoCaoController();
+        }
+
+        private void NguoiDung_Click(object sender, RoutedEventArgs e)
+        {
+            // Lấy danh sách người dùng từ controller
+            List<User> userList = _baoCaoController.GetUserList();
+
+            // Gán danh sách người dùng vào DataGrid
+            UserDataGrid.ItemsSource = userList;
+        }
+
+        private void LichSuTruyCap_Click(object sender, RoutedEventArgs e)
+        {
+            // Xử lý sự kiện khi người dùng nhấn nút Lịch Sử Truy Cập
+            MessageBox.Show("Lịch sử truy cập được hiển thị.");
+        }
+
+        private void LichSuTacDong_Click(object sender, RoutedEventArgs e)
+        {
+            // Xử lý sự kiện khi người dùng nhấn nút Lịch Sử Tác Động
+            MessageBox.Show("Lịch sử tác động được hiển thị.");
+        }
+
+        private void TongHop_Click(object sender, RoutedEventArgs e)
+        {
+            // Xử lý sự kiện khi người dùng nhấn nút Tổng Hợp
+            MessageBox.Show("Tổng hợp được hiển thị.");
         }
     }
 }

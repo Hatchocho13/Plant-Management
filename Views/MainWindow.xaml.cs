@@ -8,7 +8,7 @@ namespace PlantManagement.Views
     {
         private readonly MainController _controller;
         private bool _isAdmin; // Biến _isAdmin xác định nếu người dùng là Admin
-        private bool _isAccountPageVisible = false;
+        private User currentUser; // Thêm thuộc tính lưu thông tin người dùng
 
         public MainWindow()
         {
@@ -25,8 +25,9 @@ namespace PlantManagement.Views
             {
                 // Giả sử nếu người dùng đăng nhập thành công và là Admin
                 _isAdmin = true;
+                currentUser = loginWindow.GetCurrentUser(); // Lấy thông tin người dùng từ cửa sổ đăng nhập
                 LoadMainUI();
-                UpdateUserName("Admin"); // Tên người dùng có thể thay đổi sau khi xác thực đăng nhập
+                UpdateUserName(currentUser.FullName); // Hiển thị tên người dùng sau khi đăng nhập
             }
             else
             {
@@ -52,73 +53,66 @@ namespace PlantManagement.Views
         // Cập nhật tên người dùng khi đăng nhập thành công
         private void UpdateUserName(string userName)
         {
-            // Thay đổi tên người dùng hiển thị (nếu cần)
+            
         }
 
         // Khi nhấn vào nút "My Account"
         private void MyAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_isAccountPageVisible)
+            if (currentUser != null)
             {
-                // Nếu trang "My Account" đang hiển thị, ẩn trang và quay lại giao diện chính
-                MainContent.Content = null; // Xóa nội dung trang hiện tại
-                _isAccountPageVisible = false; // Đánh dấu là trang không còn hiển thị
+                QuanLyThongTinTaiKhoanView accountView = new QuanLyThongTinTaiKhoanView(currentUser); // Tạo đối tượng "My Account"
+                MainContent.Content = accountView; // Hiển thị trang "My Account"
             }
             else
             {
-                // Nếu trang "My Account" chưa hiển thị, hiển thị trang
-                QuanLyThongTinTaiKhoanView accountView = new QuanLyThongTinTaiKhoanView();
-                MainContent.Content = accountView; // Thêm UserControl vào ContentControl
-                _isAccountPageVisible = true; // Đánh dấu trang "My Account" đang hiển thị
+                MessageBox.Show("Vui lòng đăng nhập trước.");
             }
         }
 
-        // Các sự kiện khi nhấn vào các nút tính năng
+        // Khi nhấn vào nút "Manage User"
         private void ManageUserButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_isAccountPageVisible)
-            {
-                // Nếu trang "My Account" đang hiển thị, ẩn trang và quay lại giao diện chính
-                MainContent.Content = null; // Xóa nội dung trang hiện tại
-                _isAccountPageVisible = false; // Đánh dấu là trang không còn hiển thị
-            }
-            else
-            {
-                // Nếu trang "My Account" chưa hiển thị, hiển thị trang
-                QuanLyNguoiDungView accountView = new QuanLyNguoiDungView();
-                MainContent.Content = accountView; // Thêm UserControl vào ContentControl
-                _isAccountPageVisible = true; // Đánh dấu trang "My Account" đang hiển thị
-            }
+            QuanLyNguoiDungView userManagementView = new QuanLyNguoiDungView();
+            MainContent.Content = userManagementView; // Hiển thị trang quản lý người dùng
         }
 
+        // Khi nhấn vào nút "Manage Administrative Unit"
         private void ManageAdministrativeUnitButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện quản lý đơn vị hành chính.");
+            DonViHanhChinhView donViHanhChinhView = new DonViHanhChinhView();
+            MainContent.Content = donViHanhChinhView;
         }
 
+        // Khi nhấn vào nút "Manage Plant Variety"
         private void ManagePlantVarietyButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Mở giao diện quản lý giống cây trồng.");
         }
 
+        // Khi nhấn vào nút "Manage Pesticides"
         private void ManagePesticidesButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Mở giao diện quản lý thuốc bảo vệ thực vật.");
         }
 
+        // Khi nhấn vào nút "Manage Fertilizers"
         private void ManageFertilizersButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Mở giao diện quản lý phân bón.");
         }
 
+        // Khi nhấn vào nút "Manage Production"
         private void ManageProductionButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Mở giao diện quản lý sản xuất trồng trọt.");
         }
 
-        private void ReportButton_Click(object sender, RoutedEventArgs e)
+        // Khi nhấn vào nút "Report"
+        private void BaoCaoButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện thống kê - báo cáo.");
+            BaoCaoView baoCaoView = new BaoCaoView();
+            MainContent.Content = baoCaoView; // Hiển thị trang Báo cáo
         }
 
         // Khi nhấn vào nút Đăng Xuất

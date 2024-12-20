@@ -1,36 +1,32 @@
 ﻿<UserControl x:Class="PlantManagement.Views.QuanLyThongTinTaiKhoanView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+             Height="600" Width="1165" Background="LightYellow" >
+    <Grid>
+        <!-- Dòng chữ "Thông Tin Tài Khoản" ở giữa phía trên -->
+        <TextBlock FontSize="20" FontWeight="Bold" Text="Thông Tin Tài Khoản" 
+                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
 
-        <!-- Header -->
-        <TextBlock Text="Thông tin tài khoản" FontSize="24" FontWeight="Bold"
-                   HorizontalAlignment="Center" Margin="0,0,0,20" />
+        <!-- Phần hiển thị thông tin tài khoản -->
+        <StackPanel x:Name="AccountInfoPanel">
+            <TextBlock FontSize="16" FontWeight="Bold" Text="Họ và tên:" Margin="20,120,0,0"/>
+            <TextBlock x:Name="FullNameTextBlock" FontSize="16" Margin="20,10,0,20"/>
 
-        <!-- Thông tin tài khoản -->
-        <StackPanel Grid.Row="1" Margin="20">
-            <TextBlock Text="Tên đăng nhập:" FontWeight="Bold" />
-            <TextBlock Text="{Binding UserName}" Margin="0,0,0,10" />
+            <TextBlock FontSize="16" FontWeight="Bold" Text="Tên đăng nhập:" Margin="20,0,0,0" />
+            <TextBlock x:Name="UserNameTextBlock" FontSize="16" Margin="20,10,0,20"/>
 
-            <TextBlock Text="Họ và tên:" FontWeight="Bold" />
-            <TextBlock Text="{Binding FullName}" Margin="0,0,0,10" />
+            <TextBlock FontSize="16" FontWeight="Bold" Text="Email:" Margin="20,0,0,0"  />
+            <TextBlock x:Name="EmailTextBlock" FontSize="16" Margin="20,10,0,20"/>
 
-            <TextBlock Text="Email:" FontWeight="Bold" />
-            <TextBlock Text="{Binding Email}" Margin="0,0,0,10" />
-
-            <TextBlock Text="Ngày tạo tài khoản:" FontWeight="Bold" />
-            <TextBlock Text="{Binding CreatedAt}" Margin="0,0,0,10" />
-
-            <TextBlock Text="Nhóm người dùng:" FontWeight="Bold" />
-            <TextBlock Text="{Binding GroupName}" Margin="0,0,0,10" />
-
-            <TextBlock Text="Trạng thái:" FontWeight="Bold" />
-            <TextBlock Text="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" Margin="0,0,0,10" />
+            <TextBlock FontSize="16" FontWeight="Bold" Text="Ngày tạo tài khoản:" Margin="20,0,0,0"/>
+            <TextBlock x:Name="CreatedAtTextBlock" FontSize="16" Margin="20,10,0,20"/>
         </StackPanel>
+
+        <!-- Nút đổi mật khẩu ở góc phải dưới -->
+        <Button x:Name="ForgotPasswordButton" Content="Đổi mật khẩu" Background="Green" Foreground="White"  FontSize="16" Height="25" Width="120" Click="ForgotPasswordButton_Click" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,20,30,20" />
+
+        <!-- Khu vực hiển thị ResetPasswordView -->
+        <ContentControl x:Name="ResetPasswordContent"  Visibility="Collapsed" />
     </Grid>
 </UserControl>
