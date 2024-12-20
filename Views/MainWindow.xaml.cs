@@ -113,6 +113,8 @@ namespace PlantManagement.Views
         {
             BaoCaoView baoCaoView = new BaoCaoView();
             MainContent.Content = baoCaoView; // Hiển thị trang Báo cáo
+            // Tự động gọi sự kiện "NguoiDung_Click" khi giao diện Báo Cáo được mở
+            baoCaoView.NguoiDung_Click(this, new RoutedEventArgs());
         }
 
         // Khi nhấn vào nút Đăng Xuất

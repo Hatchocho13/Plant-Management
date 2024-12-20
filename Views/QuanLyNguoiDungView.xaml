@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink">
     <Grid>
         <!-- Header -->
         <TextBlock Text="Thông tin người dùng" FontSize="24" FontWeight="Bold" 

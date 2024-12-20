@@ -5,14 +5,15 @@
 
     <Application.Resources>
         <Style x:Key="SidebarButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#E8F5E9"/>
-            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="Background" Value="Pink"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="BorderBrush" Value="#689F38"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <!-- Bạn có thể thêm các thuộc tính khác tùy theo yêu cầu -->
         </Style>
+        
     </Application.Resources>
 
 </Application>

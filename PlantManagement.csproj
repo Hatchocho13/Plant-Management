@@ -75,12 +75,14 @@
     <Compile Include="Models\GiongCay_LuuHanh.cs" />
     <Compile Include="Models\GroupPermission.cs" />
     <Compile Include="Models\LoginHistory.cs" />
+    <Compile Include="Models\LoginHistoryCount.cs" />
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\PhanBon.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SinhVatGayHai.cs" />
     <Compile Include="Models\SXTT.cs" />
     <Compile Include="Models\ThuocBVTV.cs" />
+    <Compile Include="Models\TongHopData.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Models\UserRole.cs" />

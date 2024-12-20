@@ -10,4 +10,6 @@ public class User
     public bool IsActive { get; set; } // Trạng thái kích hoạt
     public DateTime CreatedAt { get; set; } // Ngày tạo tài khoản
     public int ID_Group { get; set; } // ID nhóm người dùng
+
+    public string GroupName { get; set; } // Thêm GroupName để lưu tên nhóm
 }
