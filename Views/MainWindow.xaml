@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Quản lý trồng trọt" Height="600" Width="1168" WindowStartupLocation="CenterScreen" >
 
-    <Grid>
+    <Grid >
         <!-- Giao diện đăng nhập ban đầu -->
         <StackPanel x:Name="InitialPanel" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible">
             <Button x:Name="LoginButton" Content="Đăng Nhập" Width="250" Height="50" Click="LoginButton_Click" Margin="0,15" Background="#4CAF50" Foreground="White" FontWeight="Bold" BorderBrush="#388E3C" BorderThickness="2" Cursor="Hand"/>
@@ -11,7 +11,7 @@
         </StackPanel>
 
         <!-- Giao diện sau khi đăng nhập -->
-        <Grid x:Name="MainPanel" Visibility="Collapsed" Background="#E8F5E9" Margin="20">
+        <Grid x:Name="MainPanel" Visibility="Collapsed" Background="Beige" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -22,14 +22,19 @@
             </Grid.ColumnDefinitions>
 
             <!-- Header -->
-            <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#00FA9A" Height="80">
-                <Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Height="100">
+                <Grid.Background>
+                    <ImageBrush ImageSource="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\pngtree-green-grass-and-blue-sky-background-image_15697980.jpg" Stretch="UniformToFill"/>
+                </Grid.Background>
+            
+
+            <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0">
-                    <TextBlock Text="Quản Lý Trồng Trọt" FontSize="24" FontWeight="Bold" Foreground="#006400" VerticalAlignment="Center" Margin="10,0"/>
+                    <TextBlock Text="Quản Lý Trồng Trọt" FontSize="28" FontWeight="Bold" Foreground="#006400" VerticalAlignment="Center" Margin="10,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0" Grid.Column="1">
@@ -43,7 +48,7 @@
             </Grid>
 
             <!-- Sidebar -->
-            <StackPanel Grid.Row="1" Grid.Column="0" Background="Pink">
+            <StackPanel Grid.Row="1" Grid.Column="0" Background="#BBFFFF">
                 <!-- Chèn logo cây xanh -->
                 <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\cropped-logo-vingarden-removebg-preview.png" Height="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,10"/>
 
@@ -101,10 +106,11 @@
             </StackPanel>
 
             <!-- Content Area -->
-            <Border Grid.Row="1" Grid.Column="1" Background="White" CornerRadius="5"  Margin="40"
-                    BorderBrush="#4CAF50" BorderThickness="1">
-                <ContentControl x:Name="MainContent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <!-- Ô (1,1) với Border -->
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Background="White">
+                <ContentControl x:Name="MainContent" Height="Auto"/>
             </Border>
+
         </Grid>
     </Grid>
 </Window>

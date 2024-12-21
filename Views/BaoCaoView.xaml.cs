@@ -29,15 +29,59 @@ namespace PlantManagement.Views
             MessagePlaceholder.Visibility = Visibility.Collapsed;
         }
 
+        // Xử lý sự kiện khi bấm vào một nút trong Expander
+        private void ExpanderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button clickedButton)
+            {
+                // Thay đổi tiêu đề của Expander
+                BaoCaoExpander.Header = clickedButton.Content;
+
+                // Thu gọn Expander
+                BaoCaoExpander.IsExpanded = false;
+
+                // Cập nhật màu nền của nút
+                SetButtonBackground(clickedButton);
+
+                // Ẩn tất cả các DataGrid
+                HideAllViews();
+
+                // Hiển thị nội dung tương ứng với nút
+                switch (clickedButton.Name)
+                {
+                    case "NguoiDungButton":
+                        var userList = _baoCaoController.GetUserList();
+                        UserDataGrid.ItemsSource = userList;
+                        UserDataGrid.Visibility = Visibility.Visible;
+                        break;
+                    case "LichSuTruyCapButton":
+                        var loginHistoryList = _baoCaoController.GetLoginHistoryWithFullName();
+                        LoginHistoryDataGrid.ItemsSource = loginHistoryList;
+                        LoginHistoryDataGrid.Visibility = Visibility.Visible;
+                        break;
+                    case "LichSuTacDongButton":
+                        var impactHistoryList = _baoCaoController.GetLoginHistoryCount();
+                        ImpactHistoryDataGrid.ItemsSource = impactHistoryList;
+                        ImpactHistoryDataGrid.Visibility = Visibility.Visible;
+                        break;
+                    case "TongHopButton":
+                        var tongHopData = _baoCaoController.GetTongHopData();
+                        TongHopDataGrid.ItemsSource = tongHopData;
+                        TongHopDataGrid.Visibility = Visibility.Visible;
+                        break;
+                }
+            }
+        }
+
         // Thay đổi màu nền của nút
         private void SetButtonBackground(Button clickedButton)
         {
             if (_currentButton != null)
             {
-                _currentButton.Background = System.Windows.Media.Brushes.LightGreen; // Trở về màu gốc của nút trước
+                _currentButton.Background = System.Windows.Media.Brushes.White; // Trở về màu gốc của nút trước
             }
 
-            clickedButton.Background = System.Windows.Media.Brushes.LightBlue; // Đặt màu xanh cho nút hiện tại
+            clickedButton.Background = System.Windows.Media.Brushes.LightGreen; // Đặt màu xanh cho nút hiện tại
             _currentButton = clickedButton; // Lưu lại nút hiện tại
         }
 

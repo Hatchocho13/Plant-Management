@@ -18,12 +18,6 @@ namespace PlantManagement.Views
         {
             InitializeComponent();
             _controller = new DonViHanhChinhController();
-        }
-
-        // Khi bấm nút "Đơn Vị Hành Chính Huyện"
-        private void HuyenButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Tạo hiệu ứng trượt (Slide)
             var slideAnimation = new DoubleAnimation
             {
                 From = 0,
@@ -34,6 +28,13 @@ namespace PlantManagement.Views
             HuyenStackPanel.BeginAnimation(HeightProperty, slideAnimation);
 
             LoadHuyenData();
+        }
+
+        // Khi bấm nút "Đơn Vị Hành Chính Huyện"
+        private void HuyenButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Tạo hiệu ứng trượt (Slide)
+            
         }
 
         // Tải dữ liệu huyện (cấp 1)
@@ -51,6 +52,7 @@ namespace PlantManagement.Views
                     HuyenListBox.DisplayMemberPath = "TenDVHC"; // Hiển thị tên huyện
                 }
             }
+            LoadXaData(0);
         }
 
         // Khi người dùng chọn một huyện
@@ -81,7 +83,7 @@ namespace PlantManagement.Views
             try
             {
                 // Nếu hiệu ứng trượt chưa được thực hiện, thực hiện hiệu ứng
-                if (!isSlideAnimationDone)
+                if (true)
                 {
                     // Ẩn XaStackPanel trước khi thực hiện hiệu ứng trượt lại
                     XaStackPanel.Visibility = Visibility.Collapsed;
@@ -119,27 +121,64 @@ namespace PlantManagement.Views
             }
         }
 
-        // Các hàm xử lý nút "Thêm", "Sửa", "Xóa" (ví dụ)
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Logic thêm đơn vị hành chính
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Logic sửa đơn vị hành chính
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Logic xóa đơn vị hành chính
-        }
 
         // Tìm kiếm
+        // Xử lý tìm kiếm
+        // Xử lý tìm kiếm huyện và xã
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            // Logic tìm kiếm đơn vị hành chính
+            try
+            {
+                string keyword = SearchTextBox.Text.Trim();
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    DataTable searchResults = _controller.SearchDonViHanhChinh(keyword);
+
+                    // Phân loại kết quả tìm kiếm
+                    var huyenRows = searchResults.Select("TenCap = 'Huyện'");
+                    var xaRows = searchResults.Select("TenCap = 'Xã'");
+
+                    if (huyenRows.Length > 0)
+                    {
+                        HuyenListBox.ItemsSource = huyenRows.CopyToDataTable().DefaultView;
+                        HuyenListBox.DisplayMemberPath = "TenDVHC";
+                        HuyenStackPanel.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        HuyenListBox.ItemsSource = null;
+                        HuyenStackPanel.Visibility = Visibility.Collapsed;
+                    }
+
+                    if (xaRows.Length > 0)
+                    {
+                        XaListBox.ItemsSource = xaRows.CopyToDataTable().DefaultView;
+                        XaListBox.DisplayMemberPath = "TenDVHC";
+                        XaStackPanel.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        XaListBox.ItemsSource = null;
+                        XaStackPanel.Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    // Xóa dữ liệu nếu không có từ khóa
+                    HuyenListBox.ItemsSource = null;
+                    XaListBox.ItemsSource = null;
+                    HuyenStackPanel.Visibility = Visibility.Collapsed;
+                    XaStackPanel.Visibility = Visibility.Collapsed;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tìm kiếm: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+
 
         // Khi TextBox tìm kiếm nhận được focus
         private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -155,6 +194,28 @@ namespace PlantManagement.Views
                 WatermarkText.Visibility = Visibility.Visible;
             }
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Tải lại danh sách huyện đầy đủ
+                LoadHuyenData();
+
+                // Ẩn danh sách xã
+                XaStackPanel.Visibility = Visibility.Collapsed;
+                XaListBox.ItemsSource = null;
+
+                // Xóa nội dung tìm kiếm
+                SearchTextBox.Text = string.Empty;
+                WatermarkText.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi quay lại danh sách huyện: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
 
 
     }

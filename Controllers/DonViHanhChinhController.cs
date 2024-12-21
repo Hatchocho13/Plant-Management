@@ -78,75 +78,44 @@ namespace PlantManagement.Controllers
             }
         }
 
-        // Thêm đơn vị hành chính mới
-        public bool AddDonViHanhChinh(string tenDVHC, int capId, int parentId)
+        // Tìm kiếm huyện và xã dựa trên từ khóa
+        // Tìm kiếm huyện và xã dựa trên từ khóa gần đúng
+        public DataTable SearchDonViHanhChinh(string keyword)
         {
             try
             {
                 string query = @"
-                    INSERT INTO DonViHanhChinh (TenDVHC, ID_Cap, parent_id)
-                    VALUES (@TenDVHC, @CapId, @ParentId)";
+            SELECT D.ID, D.TenDVHC, C.TenCap, D.parent_id
+            FROM DonViHanhChinh D
+            JOIN Cap C ON D.ID_Cap = C.ID
+            WHERE D.TenDVHC COLLATE SQL_Latin1_General_CP1_CI_AI LIKE @Keyword
+
+            UNION
+
+            SELECT Parent.ID, Parent.TenDVHC, CParent.TenCap, Parent.parent_id
+            FROM DonViHanhChinh Child
+            JOIN DonViHanhChinh Parent ON Child.parent_id = Parent.ID
+            JOIN Cap CParent ON Parent.ID_Cap = CParent.ID
+            WHERE Child.TenDVHC COLLATE SQL_Latin1_General_CP1_CI_AI LIKE @Keyword
+            AND Parent.ID_Cap = 2"; // Lấy cả Huyện chứa Xã tìm kiếm
+
                 var parameters = new[]
                 {
-                    new SqlParameter("@TenDVHC", SqlDbType.NVarChar) { Value = tenDVHC },
-                    new SqlParameter("@CapId", SqlDbType.Int) { Value = capId },
-                    new SqlParameter("@ParentId", SqlDbType.Int) { Value = parentId }
-                };
-                int rowsAffected = _dbHelper.ExecuteNonQuery(query, parameters);
-                return rowsAffected > 0; // Trả về true nếu thêm thành công
+            new SqlParameter("@Keyword", SqlDbType.NVarChar) { Value = $"%{keyword}%" }
+        };
+
+                DataTable dt = _dbHelper.ExecuteQuery(query, parameters);
+                return dt;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error while adding DonViHanhChinh: {ex.Message}");
-                return false; // Trả về false trong trường hợp lỗi
+                Console.WriteLine($"Error while searching DonViHanhChinh: {ex.Message}");
+                return new DataTable();
             }
         }
 
-        // Sửa đơn vị hành chính
-        public bool UpdateDonViHanhChinh(int id, string tenDVHC, int capId, int parentId)
-        {
-            try
-            {
-                string query = @"
-                    UPDATE DonViHanhChinh
-                    SET TenDVHC = @TenDVHC, ID_Cap = @CapId, parent_id = @ParentId
-                    WHERE ID = @Id";
-                var parameters = new[]
-                {
-                    new SqlParameter("@Id", SqlDbType.Int) { Value = id },
-                    new SqlParameter("@TenDVHC", SqlDbType.NVarChar) { Value = tenDVHC },
-                    new SqlParameter("@CapId", SqlDbType.Int) { Value = capId },
-                    new SqlParameter("@ParentId", SqlDbType.Int) { Value = parentId }
-                };
-                int rowsAffected = _dbHelper.ExecuteNonQuery(query, parameters);
-                return rowsAffected > 0; // Trả về true nếu sửa thành công
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error while updating DonViHanhChinh: {ex.Message}");
-                return false; // Trả về false trong trường hợp lỗi
-            }
-        }
 
-        // Xóa đơn vị hành chính
-        public bool DeleteDonViHanhChinh(int id)
-        {
-            try
-            {
-                string query = "DELETE FROM DonViHanhChinh WHERE ID = @Id";
-                var parameters = new[]
-                {
-                    new SqlParameter("@Id", SqlDbType.Int) { Value = id }
-                };
-                int rowsAffected = _dbHelper.ExecuteNonQuery(query, parameters);
-                return rowsAffected > 0; // Trả về true nếu xóa thành công
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error while deleting DonViHanhChinh: {ex.Message}");
-                return false; // Trả về false trong trường hợp lỗi
-            }
-        }
+
     }
 }
    

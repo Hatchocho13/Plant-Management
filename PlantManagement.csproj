@@ -223,6 +223,9 @@
     <Content Include=".gitignore">
       <Generator>MSBuild:Compile</Generator>
     </Content>
+    <Resource Include="Images\thontin.png" />
+    <Resource Include="Images\pngtree-icon-location-png-image_4386689-removebg-preview.png" />
+    <Resource Include="Images\pngtree-green-grass-and-blue-sky-background-image_15697980.jpg" />
     <Resource Include="Images\cropped-logo-vingarden-removebg-preview.png" />
     <Resource Include="Images\istockphoto-1200064755-612x612-removebg-preview.png" />
     <Resource Include="Images\8fe930e6-9048-47c8-b398-6fb9825796a4-removebg-preview.png" />

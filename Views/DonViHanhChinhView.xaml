@@ -6,54 +6,88 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1168">
 
-    <Grid Background="Pink" >
+    <Grid Background="#B0E0E6" >
+        
+        
         <!-- Cấu trúc chính chia làm 2 phần -->
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Header -->
-            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto"/>
+
+            
             <!-- Nội dung chính -->
         </Grid.RowDefinitions>
 
+        <Button Grid.Row="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10"
+                Click="BackButton_Click"
+                Background="Transparent"
+                BorderThickness="0"
+                ToolTip="Quay lại">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\pngtree-back-icon-arrow-photo-png-image_13614689-removebg-preview.png"
+                       Width="30"
+                       Height="30"
+                       Stretch="Uniform"/>
+                
+            </StackPanel>
+        </Button>
+        <!-- Đơn vị hành chính với logo -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,50">
+            <!-- Thêm ảnh logo -->
+            <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\pngtree-icon-location-png-image_4386689-removebg-preview.png" Width="40" Height="40" VerticalAlignment="Center" Margin="10,0"/>
+            <!-- Văn bản "Đơn vị hành chính" -->
+            <TextBlock Text="Đơn vị hành chính" FontSize="28" FontWeight="Bold" VerticalAlignment="Center"/>
+        </StackPanel>
+        
         <!-- Header -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,10">
-            <Button x:Name="HuyenButton" Content="Đơn Vị Hành Chính Huyện" Background="LightBlue"
-                    Click="HuyenButton_Click" Width="200" Height="30" Margin="5"/>
-            <Button x:Name="AddButton" Content="Thêm" Click="AddButton_Click" Width="100" Height="20" Margin="5" Background="LightGreen" />
-            <Button x:Name="EditButton" Content="Sửa" Click="EditButton_Click" Width="100" Height="20" Margin="5" Background="LightGreen"/>
-            <Button x:Name="DeleteButton" Content="Xóa" Click="DeleteButton_Click" Width="100" Height="20" Margin="5" Background="LightGreen"/>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="800,50,0,0">
                 <TextBox x:Name="SearchTextBox" Width="200" Height="20" Margin="5"
                          GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus"/>
-                <TextBlock x:Name="WatermarkText" Text="Tìm kiếm..." 
-                           Foreground="Gray" Margin="-195,10,0,0" IsHitTestVisible="False"/>
-                <Button x:Name="SearchButton" Content="Tìm kiếm" Click="SearchButton_Click" Width="100" Height="20" Margin="5" Background="LightGreen"/>
+                <TextBlock x:Name="WatermarkText"  
+                           Foreground="Black" Margin="-195,10,0,0" IsHitTestVisible="False"/>
+                <Button x:Name="SearchButton" Content="Tìm kiếm" Click="SearchButton_Click" Foreground="White" Width="100" Height="20" Margin="5" Background="CadetBlue"/>
             </StackPanel>
         </StackPanel>
 
-        <!-- Nội dung chính -->
         <Grid Grid.Row="1">
+           
+        </Grid>
+        <!-- Nội dung chính -->
+        <Grid Grid.Row="2" Margin="50,0,50,0">
+            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.02*"/>
                 <!-- Danh sách Huyện -->
                 <ColumnDefinition Width="0.5*"/>
                 <!-- Danh sách Xã -->
             </Grid.ColumnDefinitions>
 
             <!-- Danh sách Huyện -->
-            <StackPanel x:Name="HuyenStackPanel" Grid.Column="0" Background="#F5F5F5"
-                        Visibility="Collapsed" Height="0">
+            <StackPanel x:Name="HuyenStackPanel" Grid.Column="0" Background="LightGray"
+            Visibility="Visible" MinHeight="460" >
                 <TextBlock Text="Danh sách Huyện" FontWeight="Bold" FontSize="14" Margin="5"/>
                 <ListBox x:Name="HuyenListBox" SelectionChanged="HuyenListBox_SelectionChanged"
-                         BorderThickness="1" BorderBrush="Gray" Margin="5"/>
+             BorderThickness="1" BorderBrush="Gray" Margin="5" 
+             Height="50" MinHeight="400"/>
             </StackPanel>
 
+
             <!-- Danh sách Xã -->
-            <StackPanel x:Name="XaStackPanel" Grid.Column="1" Background="#EFEFEF"
+            <StackPanel x:Name="XaStackPanel" Grid.Column="2" Background="LightGray"
                         Visibility="Collapsed" Height="0">
                 <TextBlock Text="Danh sách Xã" FontWeight="Bold" FontSize="14" Margin="5"/>
-                <ListBox x:Name="XaListBox" BorderThickness="1" BorderBrush="Gray" Margin="5"/>
+                <ListBox x:Name="XaListBox" BorderThickness="1" BorderBrush="Gray" Margin="5" Height="100" MinHeight="130"/>
             </StackPanel>
         </Grid>
     </Grid>
