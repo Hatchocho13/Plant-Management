@@ -135,40 +135,55 @@ namespace PlantManagement.Views
                 {
                     DataTable searchResults = _controller.SearchDonViHanhChinh(keyword);
 
-                    // Phân loại kết quả tìm kiếm
-                    var huyenRows = searchResults.Select("TenCap = 'Huyện'");
-                    var xaRows = searchResults.Select("TenCap = 'Xã'");
-
-                    if (huyenRows.Length > 0)
+                    if (searchResults.Rows.Count > 0)
                     {
-                        HuyenListBox.ItemsSource = huyenRows.CopyToDataTable().DefaultView;
-                        HuyenListBox.DisplayMemberPath = "TenDVHC";
-                        HuyenStackPanel.Visibility = Visibility.Visible;
+                        // Phân loại kết quả tìm kiếm
+                        var huyenRows = searchResults.Select("TenCap = 'Huyện'");
+                        var xaRows = searchResults.Select("TenCap = 'Xã'");
+
+                        if (huyenRows.Length > 0)
+                        {
+                            HuyenListBox.ItemsSource = huyenRows.CopyToDataTable().DefaultView;
+                            HuyenListBox.DisplayMemberPath = "TenDVHC";
+                            HuyenStackPanel.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            HuyenListBox.ItemsSource = null;
+                            HuyenStackPanel.Visibility = Visibility.Collapsed;
+                        }
+
+                        if (xaRows.Length > 0)
+                        {
+                            XaListBox.ItemsSource = xaRows.CopyToDataTable().DefaultView;
+                            XaListBox.DisplayMemberPath = "TenDVHC";
+                            XaStackPanel.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            XaListBox.ItemsSource = null;
+                            XaStackPanel.Visibility = Visibility.Collapsed;
+                        }
                     }
                     else
                     {
-                        HuyenListBox.ItemsSource = null;
-                        HuyenStackPanel.Visibility = Visibility.Collapsed;
-                    }
+                        // Thông báo không tìm thấy kết quả
+                        MessageBox.Show("Không có đơn vị hành chính nào khớp với từ khóa tìm kiếm.",
+                                        "Kết quả tìm kiếm",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information);
 
-                    if (xaRows.Length > 0)
-                    {
-                        XaListBox.ItemsSource = xaRows.CopyToDataTable().DefaultView;
-                        XaListBox.DisplayMemberPath = "TenDVHC";
-                        XaStackPanel.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
+                        // Giữ nguyên danh sách cũ
+                        LoadHuyenData();
                         XaListBox.ItemsSource = null;
                         XaStackPanel.Visibility = Visibility.Collapsed;
                     }
                 }
                 else
                 {
-                    // Xóa dữ liệu nếu không có từ khóa
-                    HuyenListBox.ItemsSource = null;
+                    // Nếu từ khóa trống, tải lại danh sách ban đầu
+                    LoadHuyenData();
                     XaListBox.ItemsSource = null;
-                    HuyenStackPanel.Visibility = Visibility.Collapsed;
                     XaStackPanel.Visibility = Visibility.Collapsed;
                 }
             }

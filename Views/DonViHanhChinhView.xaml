@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1168">
 
-    <Grid Background="#B0E0E6" >
+    <Grid Background="#FFFFFF" >
         
         
         <!-- Cấu trúc chính chia làm 2 phần -->

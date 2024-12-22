@@ -12,5 +12,5 @@ public class LoginHistory
     public DateTime LoginTime { get; set; }
     public string IPAddress { get; set; }
 
-   
+
 }

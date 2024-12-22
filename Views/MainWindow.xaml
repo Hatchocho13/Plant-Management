@@ -48,55 +48,60 @@
             </Grid>
 
             <!-- Sidebar -->
-            <StackPanel Grid.Row="1" Grid.Column="0" Background="#BBFFFF">
+            <StackPanel Grid.Row="1" Grid.Column="0"  >
+
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\mau.jpg" Stretch="UniformToFill"/>
+                </StackPanel.Background>
+
                 <!-- Chèn logo cây xanh -->
                 <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\cropped-logo-vingarden-removebg-preview.png" Height="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,10"/>
 
                 <!-- Các danh mục -->
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="20">
-                    <Button x:Name="ManageUserButton" Style="{StaticResource SidebarButtonStyle}" Click="ManageUserButton_Click" Height="40" Margin="0,0,0,10" HorizontalContentAlignment="Left">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="20" >
+                    <Button x:Name="ManageUserButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="ManageUserButton_Click" Height="40" Margin="0,0,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\8fe930e6-9048-47c8-b398-6fb9825796a4-removebg-preview.png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Quản lý người dùng" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="ManageAdministrativeUnitButton" Style="{StaticResource SidebarButtonStyle}" Click="ManageAdministrativeUnitButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
+                    <Button x:Name="ManageAdministrativeUnitButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="ManageAdministrativeUnitButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\e7b4e0df-bbe4-43b4-afdd-6ef572b538b5-removebg-preview.png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Đơn vị hành chính" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="ManagePlantVarietyButton" Style="{StaticResource SidebarButtonStyle}" Click="ManagePlantVarietyButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
+                    <Button x:Name="ManagePlantVarietyButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="ManagePlantVarietyButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\e5e2b72b-e0f0-4547-b973-33c8207b0d88-removebg-preview (1).png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Quản lý giống cây trồng" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="ManagePesticidesButton" Style="{StaticResource SidebarButtonStyle}" Click="ManagePesticidesButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
+                    <Button x:Name="ManagePesticidesButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="ManagePesticidesButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\9bfecbae-f085-4a77-b408-e0c68a3ac55c-removebg-preview (1).png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Thuốc bảo vệ thực vật" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="ManageFertilizersButton" Style="{StaticResource SidebarButtonStyle}" Click="ManageFertilizersButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
+                    <Button x:Name="ManageFertilizersButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="ManageFertilizersButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\855d3b8c-a1f4-47c0-bd32-1390330186ed-removebg-preview.png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Quản lý phân bón" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="ManageProductionButton" Style="{StaticResource SidebarButtonStyle}" Click="ManageProductionButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
+                    <Button x:Name="ManageProductionButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="ManageProductionButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\57866269-2bd8-4869-bf57-c06cafaf6df7-removebg-preview (1).png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Sản xuất trồng trọt" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="ReportButton" Style="{StaticResource SidebarButtonStyle}" Click="BaoCaoButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
+                    <Button x:Name="ReportButton" Background="Transparent" Style="{StaticResource SidebarButtonStyle}" Click="BaoCaoButton_Click" Height="40" Margin="0,5,0,10" HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image Source="C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Images\31c8f5c5-ab91-484b-9d7c-d28f05c1eb59-removebg-preview.png" Width="20" Height="20" Margin="5,0,10,0"/>
                             <TextBlock Text="Thống kê - Báo cáo" VerticalAlignment="Center" HorizontalAlignment="Left"/>

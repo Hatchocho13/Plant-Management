@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using PlantManagement.Controllers;
@@ -60,10 +62,16 @@ namespace PlantManagement.Views
                         LoginHistoryDataGrid.Visibility = Visibility.Visible;
                         break;
                     case "LichSuTacDongButton":
-                        var impactHistoryList = _baoCaoController.GetLoginHistoryCount();
-                        ImpactHistoryDataGrid.ItemsSource = impactHistoryList;
+                        var impactHistoryTable = _baoCaoController.GetLoginHistoryData();
+
+                        // Xóa dữ liệu cũ khỏi DataGrid
+                        ImpactHistoryDataGrid.ItemsSource = null;
+
+                        // Gán dữ liệu mới
+                        ImpactHistoryDataGrid.ItemsSource = impactHistoryTable.DefaultView;
                         ImpactHistoryDataGrid.Visibility = Visibility.Visible;
                         break;
+
                     case "TongHopButton":
                         var tongHopData = _baoCaoController.GetTongHopData();
                         TongHopDataGrid.ItemsSource = tongHopData;
@@ -114,18 +122,23 @@ namespace PlantManagement.Views
         }
 
         // Hiển thị giao diện lịch sử tác động
-        private void LichSuTacDong_Click(object sender, RoutedEventArgs e)
-        {
-            HideAllViews();
-            SetButtonBackground(LichSuTacDongButton); // Thay đổi màu nền cho nút lịch sử tác động
+       private void LichSuTacDong_Click(object sender, RoutedEventArgs e)
+{
+    HideAllViews();
+    SetButtonBackground(LichSuTacDongButton); // Thay đổi màu nền cho nút lịch sử tác động
 
-            // Lấy danh sách số lần đăng nhập của người dùng từ controller
-            List<LoginHistoryCount> loginHistoryCountList = _baoCaoController.GetLoginHistoryCount();
+            // Lấy danh sách dữ liệu từ controller
+            DataTable loginHistoryData = new DataTable();
+               loginHistoryData = _baoCaoController.GetLoginHistoryData();
 
-            // Gán danh sách vào DataGrid
-            ImpactHistoryDataGrid.ItemsSource = loginHistoryCountList;
-            ImpactHistoryDataGrid.Visibility = Visibility.Visible;
-        }
+ 
+
+    // Gán DataTable vào ItemsSource của DataGrid
+    ImpactHistoryDataGrid.ItemsSource = loginHistoryData.DefaultView;
+    ImpactHistoryDataGrid.Visibility = Visibility.Visible;
+}
+
+
 
 
         // Hiển thị giao diện tổng hợp

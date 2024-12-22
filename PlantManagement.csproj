@@ -75,7 +75,6 @@
     <Compile Include="Models\GiongCay_LuuHanh.cs" />
     <Compile Include="Models\GroupPermission.cs" />
     <Compile Include="Models\LoginHistory.cs" />
-    <Compile Include="Models\LoginHistoryCount.cs" />
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\PhanBon.cs" />
     <Compile Include="Models\Role.cs" />
@@ -223,6 +222,7 @@
     <Content Include=".gitignore">
       <Generator>MSBuild:Compile</Generator>
     </Content>
+    <Resource Include="Images\mau.jpg" />
     <Resource Include="Images\thontin.png" />
     <Resource Include="Images\pngtree-icon-location-png-image_4386689-removebg-preview.png" />
     <Resource Include="Images\pngtree-green-grass-and-blue-sky-background-image_15697980.jpg" />

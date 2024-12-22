@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using PlantManagement.Helpers;
 using PlantManagement.Models;
 
@@ -107,45 +108,44 @@ namespace PlantManagement.Controllers
     return loginHistoryList;
 }
 
-        public List<LoginHistoryCount> GetLoginHistoryCount()
+        public DataTable GetLoginHistoryData()
         {
-            var loginHistoryCountList = new List<LoginHistoryCount>();
+            DataTable loginHistoryTable = new DataTable();
+            loginHistoryTable.Columns.Add("UserName", typeof(string));
+            loginHistoryTable.Columns.Add("LoginCount", typeof(int));
 
             try
             {
+                // Truy vấn bảng User và số lần đăng nhập từ bảng LoginHistory
                 string query = @"
-            SELECT 
-                u.UserName AS 'Tên người dùng',
-                COUNT(LH.ID) AS 'Số lần đăng nhập'
-            FROM LoginHistory LH
-            INNER JOIN [User] u ON LH.UserID = u.ID
-            GROUP BY u.UserName
-            ORDER BY COUNT(LH.ID) DESC;";
+SELECT u.UserName, COUNT(LH.ID) AS LoginCount
+FROM [User] u
+LEFT JOIN LoginHistory LH ON u.ID = LH.UserID
+GROUP BY u.UserName
+ORDER BY LoginCount DESC;";
 
-                using (var dataTable = _dbHelper.ExecuteQuery(query))
+                var dataTable = _dbHelper.ExecuteQuery(query);
+                if (dataTable != null && dataTable.Rows.Count > 0)
                 {
-                    if (dataTable != null && dataTable.Rows.Count > 0)
+                    foreach (DataRow row in dataTable.Rows)
                     {
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            var loginHistoryCount = new LoginHistoryCount
-                            {
-                                UserName = row["Tên người dùng"].ToString(),
-                                LoginCount = Convert.ToInt32(row["Số lần đăng nhập"])
-                            };
-
-                            loginHistoryCountList.Add(loginHistoryCount);
-                        }
+                        DataRow newRow = loginHistoryTable.NewRow();
+                        newRow["UserName"] = row["UserName"];
+                        newRow["LoginCount"] = row["LoginCount"];
+                        loginHistoryTable.Rows.Add(newRow);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error fetching login history count: {ex.Message}");
+                Console.WriteLine($"Error fetching login history: {ex.Message}");
             }
 
-            return loginHistoryCountList;
+            return loginHistoryTable;
         }
+
+
+
 
         public List<TongHopData> GetTongHopData()
         {
