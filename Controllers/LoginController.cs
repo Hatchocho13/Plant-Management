@@ -18,7 +18,7 @@ public class LoginController
     public User AuthenticateUser(string username, string password)
     {
         const string query = @"
-        SELECT ID, UserName, FullName, [Password], Email, IsActive, CreatedAt, ID_Group
+        SELECT ID, UserName, FullName, [Password], Email, IsActive, CreatedAt, ID_Role
         FROM [User] 
         WHERE UserName = @UserName";
 
@@ -41,7 +41,7 @@ public class LoginController
                 Email = row["Email"].ToString(),
                 IsActive = Convert.ToBoolean(row["IsActive"]),
                 CreatedAt = Convert.ToDateTime(row["CreatedAt"]),
-                ID_Group = Convert.ToInt32(row["ID_Group"])
+                ID_Role = Convert.ToInt32(row["ID_Role"]) // Đổi từ ID_Group sang ID_Role
             };
 
             // Kiểm tra mật khẩu và trạng thái người dùng
@@ -72,7 +72,6 @@ public class LoginController
 
         _dbHelper.ExecuteNonQuery(query, parameters);
     }
-
 
     // Phương thức lấy địa chỉ IP của người dùng
     private string GetClientIpAddress()

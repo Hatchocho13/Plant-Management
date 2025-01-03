@@ -9,7 +9,7 @@ public class User
     public string Email { get; set; } // Email
     public bool IsActive { get; set; } // Trạng thái kích hoạt
     public DateTime CreatedAt { get; set; } // Ngày tạo tài khoản
-    public int ID_Group { get; set; } // ID nhóm người dùng
+    public int ID_Role { get; set; } // ID nhóm người dùng
 
     public string GroupName { get; set; } // Thêm GroupName để lưu tên nhóm
 }

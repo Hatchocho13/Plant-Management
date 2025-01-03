@@ -23,9 +23,19 @@ namespace PlantManagement.Views
             var loginWindow = new LoginWindow();
             if (loginWindow.ShowDialog() == true)
             {
-                // Giả sử nếu người dùng đăng nhập thành công và là Admin
-                _isAdmin = true;
-                currentUser = loginWindow.GetCurrentUser(); // Lấy thông tin người dùng từ cửa sổ đăng nhập
+                // Lấy thông tin người dùng từ cửa sổ đăng nhập
+                currentUser = loginWindow.GetCurrentUser();
+
+                // Kiểm tra ID_Role để xác định người dùng có phải là Admin hay không
+                if (currentUser.ID_Role == 1)
+                {
+                    _isAdmin = true; // Admin
+                }
+                else if (currentUser.ID_Role == 2)
+                {
+                    _isAdmin = false; // User
+                }
+
                 LoadMainUI();
                 UpdateUserName(currentUser.FullName); // Hiển thị tên người dùng sau khi đăng nhập
             }
@@ -48,6 +58,30 @@ namespace PlantManagement.Views
             // Ẩn giao diện đăng nhập và hiển thị giao diện chính
             InitialPanel.Visibility = Visibility.Collapsed;
             MainPanel.Visibility = Visibility.Visible;
+
+            // Kiểm tra quyền để ẩn/hiện các nút chức năng
+            if (_isAdmin)
+            {
+                // Hiển thị tất cả các nút khi là Admin
+                ManageUserButton.Visibility = Visibility.Visible;
+                ManageAdministrativeUnitButton.Visibility = Visibility.Visible;
+                ManagePlantVarietyButton.Visibility = Visibility.Visible;
+                ManagePesticidesButton.Visibility = Visibility.Visible;
+                ManageFertilizersButton.Visibility = Visibility.Visible;
+                ManageProductionButton.Visibility = Visibility.Visible;
+                ReportButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // Ẩn các nút không cần thiết khi là User
+                ManageUserButton.Visibility = Visibility.Collapsed;
+                ManageAdministrativeUnitButton.Visibility = Visibility.Visible;
+                ManagePlantVarietyButton.Visibility = Visibility.Visible;
+                ManagePesticidesButton.Visibility = Visibility.Visible;
+                ManageFertilizersButton.Visibility = Visibility.Visible;
+                ManageProductionButton.Visibility = Visibility.Visible;
+                ReportButton.Visibility = Visibility.Collapsed;
+            }
         }
 
         // Cập nhật tên người dùng khi đăng nhập thành công

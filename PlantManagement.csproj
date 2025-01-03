@@ -58,12 +58,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\AddUserController.cs" />
     <Compile Include="Controllers\BaoCaoController.cs" />
     <Compile Include="Controllers\DonViHanhChinhController.cs" />
+    <Compile Include="Controllers\QuanLyThongTinTaiKhoanController.cs" />
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
     <Compile Include="Controllers\ResetPasswordController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Models\Cap.cs" />
@@ -73,19 +76,20 @@
     <Compile Include="Models\DonViHanhChinh.cs" />
     <Compile Include="Models\GiongCayTrong.cs" />
     <Compile Include="Models\GiongCay_LuuHanh.cs" />
-    <Compile Include="Models\GroupPermission.cs" />
     <Compile Include="Models\LoginHistory.cs" />
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\PhanBon.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Role_Permission.cs" />
     <Compile Include="Models\SinhVatGayHai.cs" />
     <Compile Include="Models\SXTT.cs" />
     <Compile Include="Models\ThuocBVTV.cs" />
     <Compile Include="Models\TongHopData.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserGroup.cs" />
-    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\VuonCayDauDong.cs" />
+    <Compile Include="Views\AddUserView.xaml.cs">
+      <DependentUpon>AddUserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BaoCaoView.xaml.cs">
       <DependentUpon>BaoCaoView.xaml</DependentUpon>
     </Compile>
@@ -122,6 +126,10 @@
     <Compile Include="Views\ResetPasswordView.xaml.cs">
       <DependentUpon>ResetPasswordView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BaoCaoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

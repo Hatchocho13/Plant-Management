@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\obj\Release\
+C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\obj\Release\
 PlantManagement
 none
 false
 TRACE
-C:\Users\AD\Desktop\PlantManagement\PlantManagement\App.xaml
-12901011529
+C:\Users\AD\Desktop\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\Plant-Management-07a638d8414b7f224d525f816d8a96a3db0a58d0\App.xaml
+14-419463716
 1-600760770
-39-695838945
+46747045763
 151937372271
-Views\BaoCaoView.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\QuanLyDanhMucView.xaml;Views\QuanLyGiongCayTrongView.xaml;Views\QuanLyLichSuView.xaml;Views\QuanLyNguoiDunngView.xaml;Views\QuanLyPhanBonView.xaml;Views\QuanLySanXuatTrongTrotView.xaml;Views\QuanLyThongTinTaiKhoanView.xaml;Views\QuanLyThuocBaoVeView.xaml;Views\RegisterWindow.xaml;
+Views\BaoCaoView.xaml;Views\DonViHanhChinhView.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\QuanLyDanhMucView.xaml;Views\QuanLyGiongCayTrongView.xaml;Views\QuanLyLichSuView.xaml;Views\QuanLyNguoiDungView.xaml;Views\QuanLyPhanBonView.xaml;Views\QuanLySanXuatTrongTrotView.xaml;Views\QuanLyThongTinTaiKhoanView.xaml;Views\QuanLyThuocBaoVeView.xaml;Views\RegisterWindow.xaml;Views\ResetPasswordView.xaml;
 
-True
+False
 

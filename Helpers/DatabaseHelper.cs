@@ -12,7 +12,7 @@ namespace PlantManagement.Helpers
         public DatabaseHelper()
         {
             // Chuỗi kết nối tới cơ sở dữ liệu
-            _connectionString = "Server=DESKTOP-ICACP6G\\SQLEXPRESS;Database=QuanLyTrongTrot;Trusted_Connection=True;";
+            _connectionString = "Server=DESKTOP-ICACP6G\\SQLEXPRESS;Database=QuanLyTrongTrot4;Trusted_Connection=True;";
         }
 
         // Phương thức mở kết nối

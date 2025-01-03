@@ -24,9 +24,9 @@ namespace PlantManagement.Controllers
             {
                 string query = @"
             SELECT 
-                u.ID, u.UserName, u.FullName, u.Email, u.IsActive, u.CreatedAt, u.ID_Group, ug.GroupName
+                u.ID, u.UserName, u.FullName, u.Email, u.IsActive, u.CreatedAt, u.ID_Role, ug.RoleName
             FROM [User] u
-            LEFT JOIN UserGroup ug ON u.ID_Group = ug.ID
+            LEFT JOIN Role ug ON u.ID_Role = ug.ID
             ORDER BY u.UserName";
 
                 using (var dataTable = _dbHelper.ExecuteQuery(query))
@@ -43,11 +43,11 @@ namespace PlantManagement.Controllers
                                 Email = row["Email"].ToString(),
                                 IsActive = Convert.ToBoolean(row["IsActive"]),
                                 CreatedAt = Convert.ToDateTime(row["CreatedAt"]),
-                                ID_Group = Convert.ToInt32(row["ID_Group"]) // Giữ nguyên ID_Group
+                                ID_Role = Convert.ToInt32(row["ID_Role"]) // Giữ nguyên ID_Group
                             };
 
                             // Thêm GroupName từ bảng UserGroup
-                            user.GroupName = row["GroupName"].ToString();
+                            user.GroupName = row["RoleName"].ToString();
 
                             userList.Add(user);
                         }

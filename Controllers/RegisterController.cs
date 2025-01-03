@@ -31,8 +31,8 @@ namespace PlantManagement.Controllers
 
                 // Thêm người dùng mới vào cơ sở dữ liệu
                 const string insertQuery = @"
-                    INSERT INTO [User] (UserName, FullName, Email, [Password], IsActive, CreatedAt, ID_Group) 
-                    VALUES (@UserName, @FullName, @Email, @Password, 1, GETDATE(), 1)";
+                    INSERT INTO [User] (UserName, FullName, Email, [Password], IsActive, CreatedAt, ID_Role) 
+                    VALUES (@UserName, @FullName, @Email, @Password, 1, GETDATE(), 2)";
 
                 var parameters = new[]
                 {
