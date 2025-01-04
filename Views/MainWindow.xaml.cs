@@ -139,7 +139,8 @@ namespace PlantManagement.Views
         // Khi nhấn vào nút "Manage Production"
         private void ManageProductionButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện quản lý sản xuất trồng trọt.");
+            QuanLySanXuatTrongTrotView quanLySanXuatTrongTrotView = new QuanLySanXuatTrongTrotView();
+            MainContent.Content = quanLySanXuatTrongTrotView;
         }
 
         // Khi nhấn vào nút "Report"

@@ -61,6 +61,7 @@
     <Compile Include="Controllers\AddUserController.cs" />
     <Compile Include="Controllers\BaoCaoController.cs" />
     <Compile Include="Controllers\DonViHanhChinhController.cs" />
+    <Compile Include="Controllers\QuanLySanXuatTrongTrotController.cs" />
     <Compile Include="Controllers\QuanLyThongTinTaiKhoanController.cs" />
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>

@@ -68,15 +68,15 @@ namespace PlantManagement.Controllers
 
                 // Thêm người dùng mới vào cơ sở dữ liệu
                 const string insertQuery = @"
-                    INSERT INTO [User] (UserName, FullName, Email, [Password], IsActive, CreatedAt, ID_Role) 
+                    INSERT INTO [User] (UserName, FullName,  [Password], Email, IsActive, CreatedAt, ID_Role) 
                     VALUES (@UserName, @FullName, @Email, @Password, 1, GETDATE(), @ID_Role)";
 
                 var parameters = new[]
                 {
                     new SqlParameter("@UserName", SqlDbType.NVarChar) { Value = username },
                     new SqlParameter("@FullName", SqlDbType.NVarChar) { Value = fullName },
-                    new SqlParameter("@Email", SqlDbType.NVarChar) { Value = email },
                     new SqlParameter("@Password", SqlDbType.NVarChar) { Value = password }, // Nên mã hóa mật khẩu
+                    new SqlParameter("@Email", SqlDbType.NVarChar) { Value = email },
                     new SqlParameter("@ID_Role", SqlDbType.Int) { Value = roleId }
                 };
                 Console.WriteLine(roleId); 

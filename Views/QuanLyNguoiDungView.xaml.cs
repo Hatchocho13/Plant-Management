@@ -255,6 +255,8 @@ namespace PlantManagement.Views
             }
         }
 
+        
+
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
         {
             if (UserDataGrid.SelectedItem is User selectedUser)
