@@ -11,5 +11,5 @@ public class User
     public DateTime CreatedAt { get; set; } // Ngày tạo tài khoản
     public int ID_Role { get; set; } // ID nhóm người dùng
 
-    public string GroupName { get; set; } // Thêm GroupName để lưu tên nhóm
+    public string RoleName { get; set; } // Thêm GroupName để lưu tên nhóm
 }

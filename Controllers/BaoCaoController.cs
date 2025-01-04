@@ -43,11 +43,11 @@ namespace PlantManagement.Controllers
                                 Email = row["Email"].ToString(),
                                 IsActive = Convert.ToBoolean(row["IsActive"]),
                                 CreatedAt = Convert.ToDateTime(row["CreatedAt"]),
-                                ID_Role = Convert.ToInt32(row["ID_Role"]) // Giữ nguyên ID_Group
+                                ID_Role = Convert.ToInt32(row["ID_Role"]) // Giữ nguyên ID_Role
                             };
 
                             // Thêm GroupName từ bảng UserGroup
-                            user.GroupName = row["RoleName"].ToString();
+                            user.RoleName = row["RoleName"].ToString();
 
                             userList.Add(user);
                         }

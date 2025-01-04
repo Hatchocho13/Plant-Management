@@ -63,7 +63,7 @@ namespace PlantManagement.Views
 
             // Thêm logic lưu người dùng (gọi AddUserController)
             var addUserController = new AddUserController();
-            bool isAdded = addUserController.AddUser(newUser, roleName);
+            bool isAdded = addUserController.AddUser(newUser.UserName, newUser.FullName, newUser.Password, newUser.Email, roleName);
 
             if (isAdded)
             {

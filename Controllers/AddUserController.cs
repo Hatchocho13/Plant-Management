@@ -43,63 +43,54 @@ namespace PlantManagement.Controllers
         }
 
         // Phương thức thêm người dùng mới vào cơ sở dữ liệu
-        public bool AddUser(User user, string roleName)
+        // Phương thức thêm người dùng mới vào cơ sở dữ liệu với ID_Role được truy vấn từ RoleName
+        public bool AddUser(string username, string fullName, string email, string password, string roleName)
         {
-            // Kiểm tra tính hợp lệ của thông tin người dùng
-            if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.Password) ||
-                string.IsNullOrEmpty(user.FullName) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(roleName))
+            int roleId = 1;
+            if (string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase))
             {
-                throw new ArgumentException("Tên người dùng, mật khẩu, họ tên, email và vai trò không thể rỗng.");
+                roleId = 1;
             }
-
-            // Lấy RoleId từ bảng Role theo RoleName
-            string roleIdQuery = "SELECT TOP 1 RoleId FROM Role WHERE RoleName = @RoleName";  // Sử dụng TOP 1 để lấy một RoleId duy nhất
-            SqlParameter[] roleParameters = new SqlParameter[] {
-                new SqlParameter("@RoleName", roleName)
-            };
-
-            int roleId = -1;
-            try
+            else if (string.Equals(roleName, "User", StringComparison.OrdinalIgnoreCase))
             {
-                roleId = Convert.ToInt32(_dbHelper.ExecuteScalar(roleIdQuery, roleParameters));
+                roleId = 2;
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Lỗi khi lấy RoleId: {ex.Message}");
+                Console.WriteLine("Vai trò không hợp lệ." + roleId + " " + roleName);
                 return false;
             }
 
-            // Nếu không tìm thấy RoleId, trả về false
-            if (roleId == -1)
-            {
-                Console.WriteLine("Không tìm thấy vai trò.");
-                return false;
-            }
-
-            // Câu lệnh SQL để chèn người dùng mới vào bảng Users
-            string query = "INSERT INTO Users (UserName, FullName, Password, Email, RoleId) " +
-                           "VALUES (@UserName, @FullName, @Password, @Email, @RoleId)";
-
-            // Tạo mảng các đối tượng SqlParameter
-            SqlParameter[] parameters = new SqlParameter[] {
-                new SqlParameter("@UserName", user.UserName),
-                new SqlParameter("@FullName", user.FullName),
-                new SqlParameter("@Password", user.Password),
-                new SqlParameter("@Email", user.Email),
-                new SqlParameter("@RoleId", roleId)
-            };
-
-            // Thực thi câu lệnh SQL thông qua DatabaseHelper
             try
             {
-                int rowsAffected = _dbHelper.ExecuteNonQuery(query, parameters);
-                return rowsAffected > 0; // Nếu thêm thành công, trả về true
+                
+                
+
+                // Thêm người dùng mới vào cơ sở dữ liệu
+                const string insertQuery = @"
+                    INSERT INTO [User] (UserName, FullName, Email, [Password], IsActive, CreatedAt, ID_Role) 
+                    VALUES (@UserName, @FullName, @Email, @Password, 1, GETDATE(), @ID_Role)";
+
+                var parameters = new[]
+                {
+                    new SqlParameter("@UserName", SqlDbType.NVarChar) { Value = username },
+                    new SqlParameter("@FullName", SqlDbType.NVarChar) { Value = fullName },
+                    new SqlParameter("@Email", SqlDbType.NVarChar) { Value = email },
+                    new SqlParameter("@Password", SqlDbType.NVarChar) { Value = password }, // Nên mã hóa mật khẩu
+                    new SqlParameter("@ID_Role", SqlDbType.Int) { Value = roleId }
+                };
+                Console.WriteLine(roleId); 
+                int rowsAffected = _dbHelper.ExecuteNonQuery(insertQuery, parameters);
+                return rowsAffected > 0; // Thành công nếu số dòng ảnh hưởng > 0
             }
             catch (Exception ex)
             {
+                // Xử lý lỗi (log, thông báo, ...)
                 Console.WriteLine($"Lỗi khi thêm người dùng: {ex.Message}");
                 return false;
             }
         }
+
+
     }
 }

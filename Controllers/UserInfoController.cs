@@ -51,7 +51,7 @@ namespace PlantManagement.Controllers
                             };
 
                             // Thêm RoleName từ bảng Role
-                            user.GroupName = row["RoleName"].ToString();
+                            user.RoleName = row["RoleName"].ToString();
 
                             userList.Add(user);
                         }
