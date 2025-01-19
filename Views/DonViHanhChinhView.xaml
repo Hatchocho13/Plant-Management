@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1168">
 
-    <Grid Background="#FFFFFF" >
+    <Grid Background="LightSteelBlue" >
         
         
         <!-- Cấu trúc chính chia làm 2 phần -->
@@ -55,7 +55,7 @@
                          GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus"/>
                 <TextBlock x:Name="WatermarkText"  
                            Foreground="Black" Margin="-195,10,0,0" IsHitTestVisible="False"/>
-                <Button x:Name="SearchButton" Content="Tìm kiếm" Click="SearchButton_Click" Foreground="White" Width="100" Height="20" Margin="5" Background="CadetBlue"/>
+                <Button x:Name="SearchButton" Content="Tìm kiếm" Click="SearchButton_Click" Foreground="White" Width="100" Height="20" Margin="5" Background="#FF008EFA"/>
             </StackPanel>
         </StackPanel>
 

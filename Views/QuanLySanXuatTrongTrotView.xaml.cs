@@ -210,7 +210,9 @@ namespace PlantManagement.Views
             }
         }
 
+        private void DataGridSXTT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
-
+        }
     }
 }

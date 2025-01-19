@@ -63,7 +63,7 @@ namespace PlantManagement.Controllers
                     SELECT D.ID, D.TenDVHC, C.TenCap
                     FROM DonViHanhChinh D
                     JOIN Cap C ON D.ID_Cap = C.ID
-                    WHERE D.parent_id = @HuyenId AND D.ID_Cap = 3"; // Cấp 2 là xã
+                    WHERE D.parent_id = @HuyenId AND D.ID_Cap = 2"; // Cấp 2 là xã
                 var parameters = new[] 
                 {
                     new SqlParameter("@HuyenId", SqlDbType.Int) { Value = huyenId }

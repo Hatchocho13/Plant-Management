@@ -40,20 +40,27 @@ namespace PlantManagement.Views
         // Tải dữ liệu huyện (cấp 1)
         private void LoadHuyenData()
         {
-            // Lấy danh sách các cấp từ controller (danh sách cấp hành chính)
-            DataTable capTable = _controller.GetDanhMucCap();
-            foreach (DataRow row in capTable.Rows)
+            try
             {
-                if (row["TenCap"].ToString() == "Huyện")  // Lọc cấp "Huyện"
+                // Lấy danh sách các cấp từ controller (danh sách cấp hành chính)
+                DataTable capTable = _controller.GetDanhMucCap();
+                foreach (DataRow row in capTable.Rows)
                 {
-                    int capId = Convert.ToInt32(row["ID"]);
-                    DataTable huyenTable = _controller.GetDanhMucDonViHanhChinh(2);
-                    HuyenListBox.ItemsSource = huyenTable.DefaultView;
-                    HuyenListBox.DisplayMemberPath = "TenDVHC"; // Hiển thị tên huyện
+                    if (row["TenCap"].ToString() == "Huyện")  // Lọc cấp "Huyện"
+                    {
+                        int capId = Convert.ToInt32(row["ID"]);
+                        DataTable huyenTable = _controller.GetDanhMucDonViHanhChinh(capId); // Lấy danh sách huyện
+                        HuyenListBox.ItemsSource = huyenTable.DefaultView;  // Đặt nguồn dữ liệu cho HuyệnListBox
+                        HuyenListBox.DisplayMemberPath = "TenDVHC"; // Hiển thị tên huyện
+                    }
                 }
             }
-            LoadXaData(0);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải dữ liệu huyện: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
         // Khi người dùng chọn một huyện
         private void HuyenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,7 +73,7 @@ namespace PlantManagement.Views
                     var selectedHuyen = (DataRowView)HuyenListBox.SelectedItem;
                     int selectedHuyenId = Convert.ToInt32(selectedHuyen["ID"]);
 
-                    // Tải danh sách xã theo huyện
+                    // Tải danh sách xã theo huyện đã chọn
                     LoadXaData(selectedHuyenId);
                 }
                 catch (Exception ex)
@@ -77,49 +84,33 @@ namespace PlantManagement.Views
         }
 
 
+
         // Tải danh sách xã theo huyện đã chọn
         private void LoadXaData(int huyenId)
         {
             try
             {
-                // Nếu hiệu ứng trượt chưa được thực hiện, thực hiện hiệu ứng
-                if (true)
+                // Lấy danh sách xã theo ID huyện
+                DataTable xaTable = _controller.GetDanhMucXaByHuyen(huyenId);
+                XaListBox.ItemsSource = xaTable.DefaultView;
+                XaListBox.DisplayMemberPath = "TenDVHC"; // Hiển thị tên xã
+
+                // Tạo hiệu ứng trượt cho danh sách xã
+                var slideAnimation = new DoubleAnimation
                 {
-                    // Ẩn XaStackPanel trước khi thực hiện hiệu ứng trượt lại
-                    XaStackPanel.Visibility = Visibility.Collapsed;
-
-                    // Lấy danh sách xã (ID_Cap = 3 và parent_id = huyenId)
-                    DataTable xaTable = _controller.GetDanhMucXaByHuyen(huyenId);
-                    XaListBox.ItemsSource = xaTable.DefaultView;
-                    XaListBox.DisplayMemberPath = "TenDVHC"; // Hiển thị tên xã
-
-                    // Tạo hiệu ứng trượt cho danh sách xã
-                    var slideAnimation = new DoubleAnimation
-                    {
-                        From = 0,
-                        To = 200, // Chiều cao cần trượt ra
-                        Duration = new Duration(TimeSpan.FromSeconds(0.5))
-                    };
-                    XaStackPanel.Visibility = Visibility.Visible; // Đảm bảo StackPanel là Visible
-                    XaStackPanel.BeginAnimation(HeightProperty, slideAnimation);
-
-                    // Đánh dấu hiệu ứng đã thực hiện
-                    isSlideAnimationDone = true;
-                }
-                else
-                {
-                    // Nếu hiệu ứng đã thực hiện, chỉ cần hiển thị danh sách xã mà không có animation
-                    DataTable xaTable = _controller.GetDanhMucXaByHuyen(huyenId);
-                    XaListBox.ItemsSource = xaTable.DefaultView;
-                    XaListBox.DisplayMemberPath = "TenDVHC"; // Hiển thị tên xã
-                    XaStackPanel.Visibility = Visibility.Visible;
-                }
+                    From = 0,
+                    To = 200, // Chiều cao cần trượt ra
+                    Duration = new Duration(TimeSpan.FromSeconds(0.5))
+                };
+                XaStackPanel.Visibility = Visibility.Visible; // Đảm bảo StackPanel là Visible
+                XaStackPanel.BeginAnimation(HeightProperty, slideAnimation);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi tải danh sách xã: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
         // Tìm kiếm
@@ -168,20 +159,14 @@ namespace PlantManagement.Views
                     else
                     {
                         // Thông báo không tìm thấy kết quả
-                        MessageBox.Show("Không có đơn vị hành chính nào khớp với từ khóa tìm kiếm.",
-                                        "Kết quả tìm kiếm",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Information);
-
-                        // Giữ nguyên danh sách cũ
-                        LoadHuyenData();
+                        MessageBox.Show("Không có đơn vị hành chính nào khớp với từ khóa tìm kiếm.", "Kết quả tìm kiếm", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LoadHuyenData(); // Tải lại danh sách huyện
                         XaListBox.ItemsSource = null;
                         XaStackPanel.Visibility = Visibility.Collapsed;
                     }
                 }
                 else
                 {
-                    // Nếu từ khóa trống, tải lại danh sách ban đầu
                     LoadHuyenData();
                     XaListBox.ItemsSource = null;
                     XaStackPanel.Visibility = Visibility.Collapsed;
@@ -192,6 +177,7 @@ namespace PlantManagement.Views
                 MessageBox.Show($"Lỗi khi tìm kiếm: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
 

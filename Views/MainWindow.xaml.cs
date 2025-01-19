@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using PlantManagement.Controllers;
+using PlantManagement.Helpers;
 using PlantManagement.Views;
 
 namespace PlantManagement.Views
@@ -121,19 +122,22 @@ namespace PlantManagement.Views
         // Khi nhấn vào nút "Manage Plant Variety"
         private void ManagePlantVarietyButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện quản lý giống cây trồng.");
+            QuanLyGiongCayTrongView quanLyGiongCayTrongView = new QuanLyGiongCayTrongView();
+            MainContent.Content = quanLyGiongCayTrongView;
         }
 
         // Khi nhấn vào nút "Manage Pesticides"
         private void ManagePesticidesButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện quản lý thuốc bảo vệ thực vật.");
+            QuanLyThuocBaoVeView quanLyThuocBaoVeView = new QuanLyThuocBaoVeView();
+            MainContent.Content = quanLyThuocBaoVeView;
         }
 
         // Khi nhấn vào nút "Manage Fertilizers"
         private void ManageFertilizersButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mở giao diện quản lý phân bón.");
+            QuanLyPhanBonView quanLyPhanBonView = new QuanLyPhanBonView();
+            MainContent.Content = quanLyPhanBonView;
         }
 
         // Khi nhấn vào nút "Manage Production"
@@ -158,6 +162,7 @@ namespace PlantManagement.Views
             MessageBox.Show("Đăng xuất thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
 
             // Quay lại giao diện đăng nhập
+            UserSession.Username = null; // Xóa thông tin phiên
             MainPanel.Visibility = Visibility.Collapsed;
             InitialPanel.Visibility = Visibility.Visible;
         }

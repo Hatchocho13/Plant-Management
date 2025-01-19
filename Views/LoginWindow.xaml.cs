@@ -29,6 +29,12 @@ namespace PlantManagement.Views
             {
                 // Lưu lịch sử đăng nhập thành công
                 _loginController.SaveLoginHistory(_currentUser.ID, true);
+                Application.Current.Resources["username"] = username; // Lưu vào Resources
+            }
+            if(_currentUser != null)
+            {
+
+            
 
                 // Hiển thị thông báo đăng nhập thành công
                 MessageBox.Show($"Đăng nhập thành công! Chào mừng {_currentUser.FullName}.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);

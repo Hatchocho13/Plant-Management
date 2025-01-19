@@ -61,15 +61,20 @@
     <Compile Include="Controllers\AddUserController.cs" />
     <Compile Include="Controllers\BaoCaoController.cs" />
     <Compile Include="Controllers\DonViHanhChinhController.cs" />
+    <Compile Include="Controllers\GiongCayTrongController.cs" />
+    <Compile Include="Controllers\QuanLyPhanBonController.cs" />
     <Compile Include="Controllers\QuanLySanXuatTrongTrotController.cs" />
     <Compile Include="Controllers\QuanLyThongTinTaiKhoanController.cs" />
     <Compile Include="Controllers\RegisterController.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
     <Compile Include="Controllers\ResetPasswordController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ThuocBaoVeThucVatController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Helpers\UserSection.cs" />
     <Compile Include="Models\Cap.cs" />
     <Compile Include="Models\CoSoBuonBan.cs" />
     <Compile Include="Models\CoSoSanXuat.cs" />

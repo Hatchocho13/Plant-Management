@@ -11,7 +11,7 @@
                   Margin="10"
                   Foreground="Black"
                   Width="150"
-                  Background="HotPink"
+                  Background="LightSkyBlue"
                   FontWeight="Bold"
                   IsExpanded="False"
                   Panel.ZIndex="100">
